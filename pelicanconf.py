@@ -1,19 +1,20 @@
 from datetime import datetime
 
+# Pelican vars
+PATH = "content"
 
+# Basic settings
 AUTHOR = 'dezeat'
 SITENAME = 'development-with-david'
 SITEURL = ""
-
-COPYRIGHT_YEAR = datetime.now().year
-
-PATH = "content"
-
+DEFAULT_LANG = 'en'
 TIMEZONE = 'Europe/Paris'
 
-DEFAULT_LANG = 'en'
-
 THEME = "themes/zerofour"
+
+# Index template vars
+SITE_DESCRIPTION = "A blog about development, programming, and technology"
+COPYRIGHT_YEAR = datetime.now().year
 
 
 # Feed generation is usually not desired when developing

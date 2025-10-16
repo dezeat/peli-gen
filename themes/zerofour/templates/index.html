@@ -29,9 +29,28 @@
 										<nav id="nav">
 											<ul>
 												<li class="current_page_item"><a href="{{ SITEURL }}/">Home</a></li>
-												<li><a href="{{ SITEURL }}/archives.html">Blog</a></li>
-												<li><a href="{{ SITEURL }}/categories.html">Categories</a></li>
-												<li><a href="{{ SITEURL }}/tags.html">Tags</a></li>
+												<li>
+													<a href="{{ SITEURL }}/archives.html">Blog</a>
+													<ul>
+														<li><a href="{{ SITEURL }}/archives.html">All Posts</a></li>
+														<li>
+															<a href="#">Categories</a>
+															<ul>
+																{% for cat, articles in categories %}
+																<li><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+																{% endfor %}
+															</ul>
+														</li>
+														<li>
+															<a href="#">Popular Tags</a>
+															<ul>
+																{% for tag, articles in tags[:5] %}
+																<li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></li>
+																{% endfor %}
+															</ul>
+														</li>
+													</ul>
+												</li>
 												{% if DISPLAY_PAGES_ON_MENU %}
 													{% for p in pages %}
 													<li><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
@@ -46,7 +65,7 @@
 						<!-- Banner -->
 							<div id="banner">
 								<h2><strong>{{ SITENAME }}</strong>{% if SITESUBTITLE %}: {{ SITESUBTITLE }}{% endif %}</h2>
-								<p>{% if SITE_DESCRIPTION %}{{ SITE_DESCRIPTION }}{% else %}A blog about development and technology{% endif %}</p>
+								<p style="text-align: center;">{% if SITE_DESCRIPTION %}{{ SITE_DESCRIPTION }}{% else %}A blog about development and technology{% endif %}</p>
 							</div>
 
 					</div>
@@ -131,7 +150,6 @@
 							<div class="col-12">
 								<div id="copyright">
 									<ul class="menu">
-									<!-- CORRECT -->
 										<li>&copy; {{ COPYRIGHT_YEAR }} {{ AUTHOR }}. All rights reserved</li>
 										<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 										<li>Powered by <a href="https://getpelican.com/">Pelican</a></li>

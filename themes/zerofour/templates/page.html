@@ -1,8 +1,99 @@
-{% extends "base.html" %}
-{% block title %}{{ page.title }} - {{ SITENAME }}{% endblock %}
-{% block content %}
-<article>
-    <h2>{{ page.title }}</h2>
-    {{ page.content }}
-</article>
-{% endblock %}
+<!DOCTYPE HTML>
+<!--
+	ZeroFour by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="{{ DEFAULT_LANG }}">
+	<head>
+		<title>{{ page.title }} - {{ SITENAME }}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/css/main.css" />
+	</head>
+	<body class="no-sidebar is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header-wrapper">
+					<div class="container">
+
+						<!-- Header -->
+							<header id="header">
+								<div class="inner">
+
+									<!-- Logo -->
+										<h1><a href="{{ SITEURL }}/" id="logo">{{ SITENAME }}</a></h1>
+
+									<!-- Nav -->
+										<nav id="nav">
+											<ul>
+												<li><a href="{{ SITEURL }}/">Home</a></li>
+												<li><a href="{{ SITEURL }}/archives.html">Blog</a></li>
+												<li><a href="{{ SITEURL }}/categories.html">Categories</a></li>
+												{% if DISPLAY_PAGES_ON_MENU %}
+													{% for p in pages %}
+													<li{% if p == page %} class="current_page_item"{% endif %}><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
+													{% endfor %}
+												{% endif %}
+											</ul>
+										</nav>
+
+								</div>
+							</header>
+
+					</div>
+				</div>
+
+			<!-- Main -->
+				<div id="main-wrapper">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div id="content">
+
+									<!-- Content -->
+										<article>
+											<header class="major">
+												<h2>{{ page.title }}</h2>
+											</header>
+
+											{{ page.content }}
+
+										</article>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			<!-- Footer Wrapper -->
+				<div id="footer-wrapper">
+					<footer id="footer" class="container">
+						<div class="row">
+							<div class="col-12">
+								<div id="copyright">
+									<ul class="menu">
+										<li>&copy; {{ COPYRIGHT_YEAR }} {{ AUTHOR }}. All rights reserved</li>
+										<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+										<li>Powered by <a href="https://getpelican.com/">Pelican</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</footer>
+				</div>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/js/jquery.min.js"></script>
+			<script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/js/jquery.dropotron.min.js"></script>
+			<script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/js/browser.min.js"></script>
+			<script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/js/breakpoints.min.js"></script>
+			<script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/js/util.js"></script>
+			<script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/js/main.js"></script>
+
+	</body>
+</html>
