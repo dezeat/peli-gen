@@ -1,9 +1,7 @@
 name: Deploy Pelican to GitHub Pages
-
 on:
   push:
     branches: [ main ]
-
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
@@ -20,8 +18,16 @@ jobs:
           pip install pelican markdown
           # Weitere Abhängigkeiten hier
       
+      - name: Verify files
+        run: |
+          ls -la
+          pwd
+      
       - name: Build site
-        run: pelican content -s publishconf.py
+        run: |
+          python -m pelican content -s publishconf.py
+        # Alternativ ohne -m:
+        # run: pelican content -s publishconf.py
       
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
