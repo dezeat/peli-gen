@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<!--
+	ZeroFour by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="{{ DEFAULT_LANG }}">
+	<head>
+		<title>{{ SITENAME }}{% block title %}{% endblock %}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/css/main.css" />
+	</head>
+	<body class="homepage is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header-wrapper">
+					<div class="container">
+
+						<!-- Header -->
+							<header id="header">
+								<div class="inner">
+
+									<!-- Logo -->
+										<h1><a href="{{ SITEURL }}/" id="logo">{{ SITENAME }}</a></h1>
+
+									<!-- Nav -->
+										<nav id="nav">
+											<ul>
+												<li class="current_page_item"><a href="{{ SITEURL }}/">Home</a></li>
+												<li>
+													<a href="{{ SITEURL }}/archives.html">Blog</a>
+													<ul>
+														<li><a href="{{ SITEURL }}/archives.html">All Posts</a></li>
+														<li>
+															<a href="#">Categories</a>
+															<ul>
+																{% for cat, articles in categories %}
+																<li><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+																{% endfor %}
+															</ul>
+														</li>
+														<li>
+															<a href="#">Popular Tags</a>
+															<ul>
+																{% for tag, articles in tags[:5] %}
+																<li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></li>
+																{% endfor %}
+															</ul>
+														</li>
+													</ul>
+												</li>
+												{% if DISPLAY_PAGES_ON_MENU %}
+													{% for p in pages %}
+													<li><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
+													{% endfor %}
+												{% endif %}
+											</ul>
+										</nav>
+
+								</div>
+							</header>
+
+					</div>
+					
+					<!-- Banner (outside container for full width centering) -->
+					<div id="banner" style="text-align: center; width: 100%;">
+						<h2><strong>{{ SITENAME }}</strong>{% if SITESUBTITLE %}: {{ SITESUBTITLE }}{% endif %}</h2>
+						<p>{% if SITE_DESCRIPTION %}{{ SITE_DESCRIPTION }}{% else %}A blog about development and technology{% endif %}</p>
+					</div>
+					
+				</div>
+
+			<!-- Main Wrapper -->
+				<div id="main-wrapper">
+					<div class="wrapper style3">
+						<div class="inner">
+							<div class="container">
+								<div class="row">
+									<div class="col-8 col-12-medium">
+
+										<!-- Article list -->
+											<section class="box article-list">
+												<h2 class="icon fa-file-alt">Recent Posts</h2>
+
+												{% for article in articles_page.object_list %}
+												<!-- Excerpt -->
+													<article class="box excerpt">
+														<a href="{{ SITEURL }}/{{ article.url }}" class="image left">
+															<img src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/pic0{{ loop.index % 8 + 1 }}.jpg" alt="" />
+														</a>
+														<div>
+															<header>
+																<span class="date">{{ article.locale_date }}</span>
+																<h3><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h3>
+															</header>
+															<p>{{ article.summary|striptags|truncate(200) }}</p>
+														</div>
+													</article>
+												{% endfor %}
+
+												<!-- Pagination -->
+												{% if articles_paginator.num_pages > 1 %}
+												<div class="pagination">
+													{% if articles_previous_page %}
+														<a href="{{ SITEURL }}/{{ articles_previous_page.url }}" class="button alt icon solid fa-arrow-left">Previous</a>
+													{% endif %}
+													<span>Page {{ articles_page.number }} of {{ articles_paginator.num_pages }}</span>
+													{% if articles_next_page %}
+														<a href="{{ SITEURL }}/{{ articles_next_page.url }}" class="button alt icon solid fa-arrow-right">Next</a>
+													{% endif %}
+												</div>
+												{% endif %}
+
+											</section>
+									</div>
+									<div class="col-4 col-12-medium">
+
+										<!-- Categories -->
+											<section class="box spotlight">
+												<h2 class="icon fa-folder">Categories</h2>
+												<ul class="divided">
+													{% for cat, articles in categories %}
+													<li><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }} ({{ articles|count }})</a></li>
+													{% endfor %}
+												</ul>
+											</section>
+
+										<!-- Tags -->
+											<section class="box spotlight">
+												<h2 class="icon fa-tag">Tags</h2>
+												<ul class="divided">
+													{% for tag, articles in tags[:10] %}
+													<li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></li>
+													{% endfor %}
+												</ul>
+											</section>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			<!-- Footer Wrapper -->
+				<div id="footer-wrapper">
+					<footer id="footer" class="container">
+						<div class="row">
+							<div class="col-12">
+								<div id="copyright">
+									<ul class="menu">
+										<li>&copy; {{ COPYRIGHT_YEAR }} {{ AUTHOR }}. All rights reserved</li>
+										<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+										<li>Powered by <a href="https://getpelican.com/">Pelican</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</footer>
+				</div>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/js/jquery.min.js"></script>
+			<script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/js/jquery.dropotron.min.js"></script>
+			<script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/js/browser.min.js"></script>
+			<script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/js/breakpoints.min.js"></script>
+			<script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/js/util.js"></script>
+			<script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/js/main.js"></script>
+
+	</body>
+</html>
