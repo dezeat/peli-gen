@@ -1,12 +1,20 @@
-AUTHOR = 'David Zimmermann'
+from datetime import datetime
+
+
+AUTHOR = 'dezeat'
 SITENAME = 'development-with-david'
 SITEURL = ""
 
+COPYRIGHT_YEAR = datetime.now().year
+
 PATH = "content"
 
-TIMEZONE = 'Europe/Rome'
+TIMEZONE = 'Europe/Paris'
 
 DEFAULT_LANG = 'en'
+
+THEME = "themes/zerofour"
+
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
