@@ -1780,11 +1780,12 @@ input, select, textarea {
 			color: #fff;
 		}
 
-/* Banner */
+* Banner */
 
 	#banner {
 		text-align: center;
-		width: 940px;
+		width: 100%;
+		max-width: 100%;
 		margin: 0 auto;
 		overflow: hidden;
 		padding: 9em 0 6em 0;
@@ -1833,9 +1834,9 @@ input, select, textarea {
 			font-weight: 700;
 			line-height: 1.3em;
 			letter-spacing: 0.04em;
-			float: left;
-			text-align: right;
-			width: 60%;
+			float: none;
+			text-align: center;
+			width: 100%;
 			line-height: 1.5em;
 			margin: 0;
 		}

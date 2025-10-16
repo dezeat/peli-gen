@@ -62,13 +62,14 @@
 								</div>
 							</header>
 
-						<!-- Banner -->
-							<div id="banner">
-								<h2><strong>{{ SITENAME }}</strong>{% if SITESUBTITLE %}: {{ SITESUBTITLE }}{% endif %}</h2>
-								<p style="text-align: center;">{% if SITE_DESCRIPTION %}{{ SITE_DESCRIPTION }}{% else %}A blog about development and technology{% endif %}</p>
-							</div>
-
 					</div>
+					
+					<!-- Banner (outside container for full width centering) -->
+					<div id="banner" style="text-align: center; width: 100%;">
+						<h2><strong>{{ SITENAME }}</strong>{% if SITESUBTITLE %}: {{ SITESUBTITLE }}{% endif %}</h2>
+						<p>{% if SITE_DESCRIPTION %}{{ SITE_DESCRIPTION }}{% else %}A blog about development and technology{% endif %}</p>
+					</div>
+					
 				</div>
 
 			<!-- Main Wrapper -->
