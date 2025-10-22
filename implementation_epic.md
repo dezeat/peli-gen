@@ -1,7 +1,3 @@
-Absolutely — I can extend your original epic to include **Pelican-specific implementation details** in a structured, actionable way. I’ll keep it concise and ticket/epic style so it’s ready for your repo.
-
----
-
 # Epic: Static Portfolio & Blog Site with Pelican
 
 **Goal:**
@@ -140,12 +136,3 @@ PROJECT_PATHS = ['projects']  # if using a separate type
 * Smooth hover effects for cards
 * Modular content so new posts/projects are easy to add
 
----
-
-This epic now includes **all the Pelican-specific details**, mapping your high-level ideas to templates, content organization, and implementation strategy.
-
----
-
-If you want, I can also **draft the folder structure + placeholder templates** for `index.html`, `blog.html`, `projects.html`, and `page.html` so you can start building directly in Pelican.
-
-Do you want me to do that next?
