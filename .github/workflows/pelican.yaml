@@ -4,16 +4,11 @@ on:
   push:
     branches: [ main ]
 
-permissions:
-  contents: write
-
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
       
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -23,6 +18,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pelican markdown
+          # Weitere Abhängigkeiten hier
       
       - name: Build site
         run: pelican content -s publishconf.py
@@ -32,4 +28,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./output
-          cname: yourdomain.com  # Optional: falls Sie eine Custom Domain haben
