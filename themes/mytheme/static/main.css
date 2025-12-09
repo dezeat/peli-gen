@@ -5,18 +5,19 @@
 
 /* ---------- Design Tokens ---------- */
 :root {
-  /* Colors - tighter, more intentional palette */
-  --bg: #ffffff;
-  --bg-subtle: #f8fafc;
-  --text: #0f172a;
-  --text-secondary: #64748b;
-  --text-muted: #94a3b8;
+  /* Colors - warmer, more inviting palette */
+  --bg: #fefefe;
+  --bg-subtle: #f6f8fb;
+  --bg-warm: #faf9f7;
+  --text: #1a1a2e;
+  --text-secondary: #555770;
+  --text-muted: #8b8fa8;
   --accent: #2563eb;
   --accent-hover: #1d4ed8;
   --accent-soft: rgba(37, 99, 235, 0.08);
   --accent-2: #f97316;
-  --border: #e2e8f0;
-  --border-light: #f1f5f9;
+  --border: #e4e6ef;
+  --border-light: #eef0f6;
   
   /* Shadows - layered for depth */
   --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
@@ -165,7 +166,7 @@ body {
 /* ---------- Hero Section ---------- */
 .home-hero {
   background: linear-gradient(180deg, var(--bg-subtle) 0%, var(--bg) 100%);
-  padding: var(--space-3xl) 0 calc(var(--space-3xl) + 80px);
+  padding: var(--space-2xl) 0 var(--space-3xl);
   position: relative;
   overflow: hidden;
 }
@@ -174,15 +175,13 @@ body {
   max-width: 1100px;
   margin: 0 auto;
   padding-inline: var(--space-lg);
-  text-align: center;
   position: relative;
-  z-index: 2;
 }
 
 .hero-media {
   position: relative;
   max-width: 900px;
-  margin: 0 auto var(--space-xl);
+  margin: 0 auto;
 }
 
 .hero-graphic {
@@ -194,6 +193,19 @@ body {
   display: block;
 }
 
+/* Content overlay on top of hero graphic */
+.hero-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-xl);
+  z-index: 2;
+}
+
 .hero-title {
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 4vw, 2.5rem);
@@ -201,6 +213,7 @@ body {
   letter-spacing: -0.025em;
   margin: 0 0 var(--space-sm);
   color: var(--text);
+  text-shadow: 0 1px 2px rgba(255,255,255,0.5);
 }
 
 .hero-sub {
@@ -208,7 +221,6 @@ body {
   font-size: 1.05rem;
   margin: 0 0 var(--space-lg);
   max-width: 480px;
-  margin-inline: auto;
 }
 
 .hero-cta {
@@ -574,8 +586,15 @@ body {
     padding: var(--space-xl) 0 var(--space-2xl);
   }
   
-  .hero-media {
-    margin-bottom: var(--space-lg);
+  /* Stack hero content below image on mobile */
+  .hero-content {
+    position: relative;
+    inset: auto;
+    padding: var(--space-lg) 0 0;
+  }
+  
+  .hero-title {
+    text-shadow: none;
   }
   
   .post-card {

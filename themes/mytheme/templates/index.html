@@ -1,16 +1,19 @@
 {# Homepage layout: hero, recent posts, project preview, links to About/Contact, footer #}
 {% extends "base.html" %}
-
 {% block content %}
 <section class="home-hero">
   <div class="hero-inner">
     <div class="hero-media">
       <img src="/images/hero-graphic.svg" alt="hero graphic" class="hero-graphic">
+      <div class="hero-content">
+        <h1 class="hero-title">{{ SITENAME }}</h1>
+        <p class="hero-sub">{{ SITE_DESCRIPTION }}</p>
+        <p class="hero-cta">
+          <a class="btn" href="{{ SITEURL }}/blog.html">Read the blog</a>
+          <a class="btn btn-ghost" href="{{ SITEURL }}/projects.html">See projects</a>
+        </p>
+      </div>
     </div>
-    <h1 class="hero-title">{{ SITENAME }}</h1>
-    <p class="hero-sub">{{ SITE_DESCRIPTION }}</p>
-    <p class="hero-cta"><a class="btn" href="{{ SITEURL }}/blog.html">Read the blog</a>
-    <a class="btn btn-ghost" href="{{ SITEURL }}/projects.html">See projects</a></p>
   </div>
 </section>
 
@@ -30,19 +33,21 @@
 <section class="container projects-preview">
   <h2>Featured projects</h2>
   <div class="projects-grid">
-        {% set shown = 0 %}
-        {% for a in articles %}
-          {% if a.metadata is defined and a.metadata.get('type','')|lower == 'project' and shown < 3 %}
-            <div class="project-card bg-gray-100 rounded-lg p-4 shadow hover:scale-105 transition">
-              {% if a.metadata.get('image') %}
-                <img src="{{ a.metadata.get('image') }}" alt="{{ a.title }}" class="mb-2 rounded">
-              {% endif %}
-              <h3 class="text-lg font-bold">{{ a.title }}</h3>
-              <p>{{ a.summary }}</p>
-            </div>
-            {% set shown = shown + 1 %}
-          {% endif %}
-        {% endfor %}
+    {% set shown = 0 %}
+    {% for a in articles %}
+      {% if a.metadata is defined and a.metadata.get('type','')|lower == 'project' and shown < 3 %}
+    <div class="project-card">
+      {% if a.metadata.get('image') %}
+      <img src="{{ a.metadata.get('image') }}" alt="{{ a.title }}">
+      {% endif %}
+      <div>
+        <h3>{{ a.title }}</h3>
+        <p>{{ a.summary }}</p>
+      </div>
+    </div>
+        {% set shown = shown + 1 %}
+      {% endif %}
+    {% endfor %}
   </div>
 </section>
 {% endblock %}
