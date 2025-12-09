@@ -1,80 +1,36 @@
-PY?=
-PELICAN?=pelican
-PELICANOPTS=
+# Minimal Makefile for peli-gen (uses Poetry)
 
-BASEDIR=$(CURDIR)
-INPUTDIR=$(BASEDIR)/content
-OUTPUTDIR=$(BASEDIR)/output
-CONFFILE=$(BASEDIR)/pelicanconf.py
-PUBLISHCONF=$(BASEDIR)/publishconf.py
+PYDIR := $(CURDIR)
+INPUT := $(PYDIR)/content
+OUTPUT := $(PYDIR)/output
+PELICAN_CONF := $(PYDIR)/pelicanconf.py
 
-GITHUB_PAGES_BRANCH=gh-pages
-GITHUB_PAGES_COMMIT_MESSAGE=Generate Pelican site
-
-
-DEBUG ?= 0
-ifeq ($(DEBUG), 1)
-	PELICANOPTS += -D
-endif
-
-RELATIVE ?= 0
-ifeq ($(RELATIVE), 1)
-	PELICANOPTS += --relative-urls
-endif
-
-SERVER ?= "0.0.0.0"
-
-PORT ?= 0
-ifneq ($(PORT), 0)
-	PELICANOPTS += -p $(PORT)
-endif
-
+.PHONY: help html dev clean tailwind preview stop-preview
 
 help:
-	@echo 'Makefile for a pelican Web site                                           '
-	@echo '                                                                          '
-	@echo 'Usage:                                                                    '
-	@echo '   make html                           (re)generate the web site          '
-	@echo '   make clean                          remove the generated files         '
-	@echo '   make regenerate                     regenerate files upon modification '
-	@echo '   make publish                        generate using production settings '
-	@echo '   make serve [PORT=8000]              serve site at http://localhost:8000'
-	@echo '   make serve-global [SERVER=0.0.0.0]  serve (as root) to $(SERVER):80    '
-	@echo '   make devserver [PORT=8000]          serve and regenerate together      '
-	@echo '   make devserver-global               regenerate and serve on 0.0.0.0    '
-	@echo '   make github                         upload the web site via gh-pages   '
-	@echo '                                                                          '
-	@echo 'Set the DEBUG variable to 1 to enable debugging, e.g. make DEBUG=1 html   '
-	@echo 'Set the RELATIVE variable to 1 to enable relative urls                    '
-	@echo '                                                                          '
+	@echo "Usage: make <target>"
+	@echo "  help         Show this help"
+	@echo "  html         Build static site (production)"
+	@echo "  dev          Run devserver (autoreload)"
+	@echo "  clean        Remove generated output/"
+	@echo "  tailwind     Build tailwind.css (requires node & tailwind)"
+	@echo "  preview      Start devserver in background and open browser"
+	@echo "  stop-preview Stop background preview started by preview"
 
 html:
-	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
+	poetry run pelican $(INPUT) -o $(OUTPUT) -s $(PELICAN_CONF)
+
+dev:
+	poetry run pelican --autoreload --listen $(INPUT) -o $(OUTPUT) -s $(PELICAN_CONF)
 
 clean:
-	[ ! -d "$(OUTPUTDIR)" ] || rm -rf "$(OUTPUTDIR)"
+	[ ! -d "$(OUTPUT)" ] || rm -rf "$(OUTPUT)"
 
-regenerate:
-	"$(PELICAN)" -r "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
+tailwind:
+	@npx tailwindcss -i ./input.css -o ./themes/mytheme/static/tailwind.css --minify || echo "tailwind build failed (ensure node & tailwind installed)"
 
-serve:
-	"$(PELICAN)" -l "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
+preview:
+	@poetry run pelican -lr $(INPUT) -o $(OUTPUT) -s $(PELICAN_CONF) > /dev/null 2>&1 & echo $$! > .pelican_preview_pid; sleep 1; xdg-open http://127.0.0.1:8000 || true; echo "Preview PID:`cat .pelican_preview_pid`"
 
-serve-global:
-	"$(PELICAN)" -l "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS) -b $(SERVER)
-
-devserver:
-	"$(PELICAN)" -lr "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
-
-devserver-global:
-	"$(PELICAN)" -lr "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS) -b 0.0.0.0
-
-publish:
-	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(PUBLISHCONF)" $(PELICANOPTS)
-
-github: publish
-	ghp-import -m "$(GITHUB_PAGES_COMMIT_MESSAGE)" -b $(GITHUB_PAGES_BRANCH) "$(OUTPUTDIR)" --no-jekyll
-	git push origin $(GITHUB_PAGES_BRANCH)
-
-
-.PHONY: html help clean regenerate serve serve-global devserver devserver-global publish github
+stop-preview:
+	@if [ -f .pelican_preview_pid ]; then kill `cat .pelican_preview_pid` && rm -f .pelican_preview_pid && echo "Preview stopped"; else echo "No preview running"; fi

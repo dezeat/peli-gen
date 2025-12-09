@@ -1,0 +1,22 @@
+{# Projects page: hero banner, grid layout, category filters #}
+{% extends "base.html" %}
+
+{% block content %}
+<section class="projects-hero">
+  <h1>Projects</h1>
+  <p class="muted">A curated collection of my work</p>
+</section>
+
+<section class="container projects-list">
+  <div class="projects-grid">
+    {% for a in articles %}
+      {% if a.metadata is defined and a.metadata.get('type','')|lower == 'project' %}
+        <article class="project-tile">
+          <h3><a href="{{ SITEURL }}{{ a.url }}">{{ a.title }}</a></h3>
+          <p class="summary">{{ a.summary }}</p>
+        </article>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

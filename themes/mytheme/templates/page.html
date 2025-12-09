@@ -1,0 +1,20 @@
+{# Static page: About, Contact using base layout #}
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="container page-single">
+    <h1 class="page-title">{{ page.title }}</h1>
+    {%- if page.slug == 'about' or page.title|lower == 'about' -%}
+    <div class="about-header">
+      <img src="{{ SITEURL }}/images/avatar.svg" alt="{{ AUTHOR }}">
+      <div>
+        <p class="about-intro"><strong>{{ AUTHOR }}</strong> — Data Engineer & frontend enthusiast</p>
+        <p class="about-intro">I build data systems and write about engineering, tooling and projects.</p>
+      </div>
+    </div>
+    {%- endif -%}
+    <article class="bg-gray-100 rounded-lg p-6 shadow">
+      {{ page.content }}
+    </article>
+  </section>
+{% endblock %}

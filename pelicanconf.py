@@ -5,12 +5,12 @@ PATH = "content"
 
 # Basic settings
 AUTHOR = 'dezeat'
-SITENAME = 'development-with-david'
+SITENAME = 'dz.dev'
 SITEURL = ""
 DEFAULT_LANG = 'en'
 TIMEZONE = 'Europe/Paris'
 
-THEME = "themes/zerofour"
+THEME = "themes/mytheme"
 
 # Index template vars
 SITE_DESCRIPTION = "A blog about development, programming, and technology"
@@ -37,6 +37,19 @@ SOCIAL = (
     ("You can add links in your config file", "#"),
     ("Another social link", "#"),
 )
+ARTICLE_PATHS = ['blog', 'projects']
+PAGE_PATHS = ['pages']
+STATIC_PATHS = ['images']
+PROJECT_PATHS = ['projects']  # if using a separate type
+
+# Only generate the direct templates we need (index, plus custom blog/projects pages)
+DIRECT_TEMPLATES = ['index', 'blog', 'projects']
+
+# Prevent creation of tag/category/author/archive pages unless explicitly desired
+TAGS_SAVE_AS = ''
+CATEGORIES_SAVE_AS = ''
+AUTHORS_SAVE_AS = ''
+ARCHIVES_SAVE_AS = ''
 
 DEFAULT_PAGINATION = 5
 
