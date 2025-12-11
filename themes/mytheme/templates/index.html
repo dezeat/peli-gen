@@ -1,53 +1,63 @@
-{# Homepage layout: hero, recent posts, project preview, links to About/Contact, footer #}
 {% extends "base.html" %}
+
 {% block content %}
-<section class="home-hero">
-  <div class="container"> 
+
+<section class="container home-hero">
     <div class="hero-media">
-      <img src="{{ SITEURL }}/images/hero-graphic.jpg" alt="hero graphic" class="hero-graphic">
-      <div class="hero-content">
-        <h1 class="hero-title">{{ SITENAME }}</h1>
-        <p class="hero-sub">{{ SITE_DESCRIPTION }}</p>
-        <p class="hero-cta">
-          <a class="btn" href="{{ SITEURL }}/blog.html">Read the blog</a>
-          <a class="btn btn-ghost" href="{{ SITEURL }}/projects.html">See projects</a>
-        </p>
-      </div>
+        <img src="{{ SITEURL }}/images/hero-bg.jpg" alt="Hero Background" class="hero-graphic">
+        <div class="hero-content">
+            <h1 class="hero-title">{{ SITENAME }}</h1>
+            <p class="hero-sub">{{ SITE_DESCRIPTION }}</p>
+            <div>
+                <a href="{{ SITEURL }}/blog.html" class="btn">Read the blog</a>
+                <a href="{{ SITEURL }}/projects.html" class="btn btn-ghost">See projects</a>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
 <section class="container recent-section">
-  <h2>Recent posts</h2>
-  <div class="recent-grid">
-    {% for article in articles[:4] %}
-    <article class="card">
-      <h3><a href="{{ SITEURL }}{{ article.url }}">{{ article.title }}</a></h3>
-      <p class="muted">{{ article.date.strftime('%Y-%m-%d') }} • {{ article.author }}</p>
-      <p class="summary">{{ article.summary }}</p>
-    </article>
+    <h2>Recent Articles</h2>
+    
+    <div class="recent-grid recent-rail">
+    
+    {% for article in articles[:5] %}
+        <div class="card post-card-home">
+            <div class="card-content">
+                <h3><a href="{{ SITEURL }}{{ article.url }}">{{ article.title }}</a></h3>
+                <p class="muted">{{ article.date.strftime('%Y-%m-%d') }} &bull; {{ article.author }}</p>
+                <p class="summary">{{ article.summary|striptags|truncate(120) }}</p>
+            </div>
+        </div>
     {% endfor %}
-  </div>
+    
+    </div>
 </section>
 
 <section class="container projects-preview">
-  <h2>Featured projects</h2>
-  <div class="projects-grid">
+    <h2>Featured Projects</h2>
+    
+    <div class="projects-grid">
+    
     {% set shown = 0 %}
     {% for a in articles %}
       {% if a.metadata is defined and a.metadata.get('type','')|lower == 'project' and shown < 3 %}
-    <div class="project-card">
-      {% if a.metadata.get('image') %}
-      <img src="{{ a.metadata.get('image') }}" alt="{{ a.title }}">
-      {% endif %}
-      <div>
-        <h3>{{ a.title }}</h3>
-        <p>{{ a.summary }}</p>
-      </div>
-    </div>
+        <a href="{{ SITEURL }}{{ a.url }}" class="project-card">
+            {% if a.image %}
+            <img src="{{ SITEURL }}/{{ a.image }}" alt="{{ a.title }}">
+            {% endif %}
+            
+            <div class="project-content">
+                <h3>{{ a.title }}</h3>
+                <p>{{ a.summary }}</p>
+                <span class="read-more">View Project →</span>
+            </div>
+        </a>
         {% set shown = shown + 1 %}
       {% endif %}
     {% endfor %}
-  </div>
+
+    </div>
 </section>
+
 {% endblock %}
