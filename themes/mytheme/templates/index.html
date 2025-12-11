@@ -37,9 +37,14 @@
   <div class="carousel" id="posts-carousel" tabindex="0">
     {% for article in articles[:5] %}
     <article class="card carousel-item">
-      <h3><a href="{{ SITEURL }}{{ article.url }}">{{ article.title }}</a></h3>
-      <p class="muted">{{ article.date.strftime('%Y-%m-%d') }} • {{ article.author }}</p>
-      <p class="summary">{{ article.summary }}</p>
+      {% if article.metadata is defined and article.metadata.get('image') %}
+      <img src="{{ article.metadata.get('image') }}" alt="{{ article.title }}" class="card-thumb">
+      {% endif %}
+      <div class="card-content">
+        <h3><a href="{{ SITEURL }}{{ article.url }}">{{ article.title }}</a></h3>
+        <p class="muted">{{ article.date.strftime('%Y-%m-%d') }} • {{ article.author }}</p>
+        <p class="summary">{{ article.summary|truncate(100, True, '...') }}</p>
+      </div>
     </article>
     {% endfor %}
   </div>
@@ -83,7 +88,7 @@
       {% endif %}
       <div class="project-content">
         <h3>{{ a.title }}</h3>
-        <p>{{ a.summary }}</p>
+        <p>{{ a.summary|truncate(80, True, '...') }}</p>
         <span class="read-more">View project →</span>
       </div>
     </a>
