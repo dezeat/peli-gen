@@ -1,6 +1,6 @@
 /* ============================================
    dz.dev — Refined Developer Portfolio
-   Cool Blue Professional Theme (v9 Final Typography)
+   Cool Blue Professional Theme (v10 - Carousel Edition)
    ============================================ */
 
 /* ---------- Design Tokens ---------- */
@@ -275,6 +275,151 @@ body {
   padding: var(--space-xl) 0;
 }
 
+/* Section Header with Navigation */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+
+.section-header h2 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.section-header h2::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+/* Carousel Navigation Buttons */
+.carousel-nav {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.carousel-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.carousel-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
+}
+
+.carousel-btn:active {
+  transform: scale(0.95);
+}
+
+.carousel-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ------------------------------------------
+   CAROUSEL / SLIDESHOW STYLES
+   ------------------------------------------ */
+.carousel-wrapper {
+  position: relative;
+  margin: 0 calc(-1 * var(--space-lg)); /* Extend to edges */
+  padding: 0 var(--space-lg);
+}
+
+.carousel {
+  display: flex;
+  gap: var(--space-lg);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: var(--space-sm) 0 var(--space-lg);
+  
+  /* Hide scrollbar - all browsers */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.carousel::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
+}
+
+.carousel:focus {
+  outline: none;
+}
+
+.carousel:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: var(--radius-md);
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
+/* Fade edges for scroll indication */
+.carousel-fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-fade-left {
+  left: 0;
+  background: linear-gradient(to right, var(--bg) 0%, transparent 100%);
+  opacity: 0;
+}
+
+.carousel-fade-right {
+  right: 0;
+  background: linear-gradient(to left, var(--bg) 0%, transparent 100%);
+  opacity: 1;
+}
+
+/* ---------- Cards in Carousel ---------- */
+.carousel .card {
+  width: 320px;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel .project-card {
+  width: 340px;
+}
+
 /* Projects Page Title and Subtitle Styling */
 .projects-page-section {
     padding-top: var(--space-2xl); /* Extra space at the top of the page */
@@ -295,8 +440,9 @@ body {
     max-width: 700px;
 }
 
-.recent-section h2,
-.projects-preview h2 {
+/* Legacy section headers (for pages without carousel) */
+.recent-section > h2:first-child,
+.projects-preview > h2:first-child {
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -308,8 +454,8 @@ body {
   gap: var(--space-sm);
 }
 
-.recent-section h2::before,
-.projects-preview h2::before {
+.recent-section > h2:first-child::before,
+.projects-preview > h2:first-child::before {
   content: '';
   width: 6px;
   height: 6px;
@@ -449,16 +595,50 @@ body {
 /* Project Card Specifics - STYLED AS A LINK */
 .project-card { 
   display: flex; 
+  flex-direction: column;
   gap: var(--space-md); 
-  padding: var(--space-md);
-  align-items: center; 
+  padding: 0;
   text-decoration: none; /* Make the link behave like a card */
   color: inherit; /* Inherit text color */
+  overflow: hidden;
+}
+
+.project-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border-light);
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover img {
+  transform: scale(1.05);
+}
+
+.project-card .project-content {
+  padding: var(--space-md) var(--space-lg) var(--space-lg);
 }
 
 .project-card:hover h3 {
     color: var(--accent); /* Color shift on hover */
 }
+
+.project-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 var(--space-xs);
+  transition: color 0.2s ease;
+}
+
+.project-card p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
 .project-card .read-more {
     display: block;
     font-size: 0.85rem;
@@ -466,24 +646,29 @@ body {
     color: var(--accent);
     margin-top: var(--space-sm);
     opacity: 0;
-    transition: opacity 0.2s ease;
-}
-.project-card:hover .read-more {
-    opacity: 1;
+    transform: translateX(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.project-card img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: var(--radius-md);
-  flex-shrink: 0;
-  background: var(--bg);
-  border: 1px solid var(--border-light);
+.project-card:hover .read-more {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Project Placeholder (when no image) */
+.project-placeholder {
+  width: 100%;
+  height: 140px;
+  background: var(--bg-blue-tint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-light);
 }
 
 /* ------------------------------------------
-   HORIZONTAL SCROLL RAIL FOR RECENT ARTICLES
+   HORIZONTAL SCROLL RAIL FOR RECENT ARTICLES (Legacy)
    ------------------------------------------ */
 .recent-rail {
     /* Override grid properties to enable horizontal scrolling */
@@ -870,13 +1055,27 @@ body {
     font-size: 1rem;
   }
 
-
   .blog-page { grid-template-columns: 1fr; padding-block: var(--space-xl); }
   .feed { padding-top: 0; }
   .sidebar-spacer { display: none; } /* Hide spacer on mobile */
   .post-card { flex-direction: column; }
   .post-card .thumb { width: 100%; height: 160px; }
-  .project-card { flex-direction: column; }
-  .project-card img { width: 100%; height: 140px; }
   .recent-section, .projects-preview { padding: var(--space-xl) 0; }
+  
+  /* Carousel responsive */
+  .carousel .card {
+    width: 280px;
+  }
+  
+  .carousel .project-card {
+    width: 280px;
+  }
+  
+  .carousel-nav {
+    display: none; /* Hide nav buttons on mobile - swipe is primary */
+  }
+  
+  .section-header {
+    margin-bottom: var(--space-md);
+  }
 }

@@ -2,52 +2,169 @@
 {% extends "base.html" %}
 {% block content %}
 <section class="home-hero">
-  <div class="hero-inner">
-    <div class="hero-media">
-      <img src="/images/hero-graphic.jpg" alt="hero graphic" class="hero-graphic">
-      <div class="hero-content">
-        <h1 class="hero-title">{{ SITENAME }}</h1>
-        <p class="hero-sub">{{ SITE_DESCRIPTION }}</p>
-        <p class="hero-cta">
-          <a class="btn" href="{{ SITEURL }}/blog.html">Read the blog</a>
-          <a class="btn btn-ghost" href="{{ SITEURL }}/projects.html">See projects</a>
-        </p>
-      </div>
-    </div>
-  </div>
+<div class="hero-inner">
+<div class="hero-media">
+<img src="/images/hero-graphic.jpg" alt="hero graphic" class="hero-graphic">
+<div class="hero-content">
+<h1 class="hero-title">{{ SITENAME }}</h1>
+<p class="hero-sub">{{ SITE_DESCRIPTION }}</p>
+<p class="hero-cta">
+<a class="btn" href="{{ SITEURL }}/blog.html">Read the blog</a>
+<a class="btn btn-ghost" href="{{ SITEURL }}/projects.html">See projects</a>
+</p>
+</div>
+</div>
+</div>
 </section>
 
 <section class="container recent-section">
+<div class="section-header">
   <h2>Recent posts</h2>
-  <div class="recent-grid">
-    {% for article in articles[:4] %}
-    <article class="card">
+  <div class="carousel-nav" data-carousel="posts-carousel">
+    <button class="carousel-btn prev" aria-label="Previous posts">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <button class="carousel-btn next" aria-label="Next posts">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+</div>
+<div class="carousel-wrapper">
+  <div class="carousel" id="posts-carousel" tabindex="0">
+    {% for article in articles[:6] %}
+    <article class="card carousel-item">
       <h3><a href="{{ SITEURL }}{{ article.url }}">{{ article.title }}</a></h3>
       <p class="muted">{{ article.date.strftime('%Y-%m-%d') }} • {{ article.author }}</p>
       <p class="summary">{{ article.summary }}</p>
     </article>
     {% endfor %}
   </div>
+  <div class="carousel-fade carousel-fade-left"></div>
+  <div class="carousel-fade carousel-fade-right"></div>
+</div>
 </section>
 
 <section class="container projects-preview">
+<div class="section-header">
   <h2>Featured projects</h2>
-  <div class="projects-grid">
+  <div class="carousel-nav" data-carousel="projects-carousel">
+    <button class="carousel-btn prev" aria-label="Previous projects">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <button class="carousel-btn next" aria-label="Next projects">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+</div>
+<div class="carousel-wrapper">
+  <div class="carousel" id="projects-carousel" tabindex="0">
     {% set shown = 0 %}
     {% for a in articles %}
-      {% if a.metadata is defined and a.metadata.get('type','')|lower == 'project' and shown < 3 %}
-    <div class="project-card">
+      {% if a.metadata is defined and a.metadata.get('type','')|lower == 'project' and shown < 6 %}
+    <a href="{{ SITEURL }}{{ a.url }}" class="project-card carousel-item">
       {% if a.metadata.get('image') %}
       <img src="{{ a.metadata.get('image') }}" alt="{{ a.title }}">
+      {% else %}
+      <div class="project-placeholder">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <circle cx="8.5" cy="8.5" r="1.5"></circle>
+          <polyline points="21 15 16 10 5 21"></polyline>
+        </svg>
+      </div>
       {% endif %}
-      <div>
+      <div class="project-content">
         <h3>{{ a.title }}</h3>
         <p>{{ a.summary }}</p>
+        <span class="read-more">View project →</span>
       </div>
-    </div>
+    </a>
         {% set shown = shown + 1 %}
       {% endif %}
     {% endfor %}
   </div>
+  <div class="carousel-fade carousel-fade-left"></div>
+  <div class="carousel-fade carousel-fade-right"></div>
+</div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const carousels = document.querySelectorAll('.carousel');
+  
+  carousels.forEach(carousel => {
+    const cardWidth = carousel.querySelector('.carousel-item')?.offsetWidth || 340;
+    const gap = 24;
+    const scrollAmount = cardWidth + gap;
+    
+    // Keyboard navigation
+    carousel.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      }
+    });
+    
+    // Mouse wheel horizontal scroll
+    carousel.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) {
+        e.preventDefault();
+        carousel.scrollBy({ left: e.deltaY, behavior: 'auto' });
+      }
+    }, { passive: false });
+    
+    // Update fade visibility
+    const updateFades = () => {
+      const wrapper = carousel.closest('.carousel-wrapper');
+      const fadeLeft = wrapper.querySelector('.carousel-fade-left');
+      const fadeRight = wrapper.querySelector('.carousel-fade-right');
+      
+      if (fadeLeft) {
+        fadeLeft.style.opacity = carousel.scrollLeft > 10 ? '1' : '0';
+      }
+      if (fadeRight) {
+        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+        fadeRight.style.opacity = carousel.scrollLeft < maxScroll - 10 ? '1' : '0';
+      }
+    };
+    
+    carousel.addEventListener('scroll', updateFades);
+    window.addEventListener('resize', updateFades);
+    setTimeout(updateFades, 100);
+  });
+  
+  // Navigation buttons
+  document.querySelectorAll('.carousel-nav').forEach(nav => {
+    const carouselId = nav.dataset.carousel;
+    const carousel = document.getElementById(carouselId);
+    const prevBtn = nav.querySelector('.prev');
+    const nextBtn = nav.querySelector('.next');
+    
+    if (carousel && prevBtn && nextBtn) {
+      const cardWidth = carousel.querySelector('.carousel-item')?.offsetWidth || 340;
+      const gap = 24;
+      const scrollAmount = cardWidth + gap;
+      
+      prevBtn.addEventListener('click', () => {
+        carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      });
+      
+      nextBtn.addEventListener('click', () => {
+        carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      });
+    }
+  });
+});
+</script>
 {% endblock %}
