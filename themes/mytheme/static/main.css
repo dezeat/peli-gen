@@ -411,13 +411,49 @@ body {
 /* ---------- Cards in Carousel ---------- */
 .carousel .card {
   width: 320px;
-  min-height: 180px;
+  height: 200px; /* Fixed height for consistency */
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+
+.carousel .card h3 {
+  flex-shrink: 0;
+}
+
+.carousel .card .muted {
+  flex-shrink: 0;
+}
+
+.carousel .card .summary {
+  flex: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit to 3 lines */
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
 }
 
 .carousel .project-card {
   width: 340px;
+  height: 280px; /* Fixed height for consistency */
+}
+
+.carousel .project-card .project-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.carousel .project-card p {
+  flex: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  margin-bottom: var(--space-xs);
 }
 
 /* Projects Page Title and Subtitle Styling */
@@ -701,33 +737,22 @@ body {
 }
 
 
-/* ---------- Blog Page Layout & Alignment Fix ---------- */
+/* ---------- Blog Page Layout ---------- */
 .blog-page {
   display: grid;
   grid-template-columns: 1fr 300px;
   gap: var(--space-2xl);
   padding-block: var(--space-2xl);
-}
-
-/* Title is OUTSIDE the grid container, but influences alignment */
-.page-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin: 0 0 var(--space-lg);
+  align-items: start;
 }
 
 .feed {
   min-width: 0;
-  padding-top: 0; /* Rely on the article card margin for spacing */
 }
 
-/* The spacer element to push the sidebar down */
+/* Sidebar spacer - no longer needed if headline removed */
 .sidebar-spacer {
-    /* Height calculation: We need to match the height of the h1.page-title + its margin-bottom + the margin-top of the first post-card */
-    height: calc(1.5rem + var(--space-lg) + var(--space-md) + 1px); /* Title height + h1 margin + card top margin + card border */
-    visibility: hidden;
-    pointer-events: none;
+  display: none;
 }
 
 /* Blog Post Card (used on blog.html) */
@@ -1065,10 +1090,12 @@ body {
   /* Carousel responsive */
   .carousel .card {
     width: 280px;
+    height: 200px;
   }
   
   .carousel .project-card {
     width: 280px;
+    height: 260px;
   }
   
   .carousel-nav {

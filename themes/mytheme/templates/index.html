@@ -35,7 +35,7 @@
 </div>
 <div class="carousel-wrapper">
   <div class="carousel" id="posts-carousel" tabindex="0">
-    {% for article in articles[:6] %}
+    {% for article in articles[:5] %}
     <article class="card carousel-item">
       <h3><a href="{{ SITEURL }}{{ article.url }}">{{ article.title }}</a></h3>
       <p class="muted">{{ article.date.strftime('%Y-%m-%d') }} • {{ article.author }}</p>
@@ -68,7 +68,7 @@
   <div class="carousel" id="projects-carousel" tabindex="0">
     {% set shown = 0 %}
     {% for a in articles %}
-      {% if a.metadata is defined and a.metadata.get('type','')|lower == 'project' and shown < 6 %}
+      {% if a.metadata is defined and a.metadata.get('type','')|lower == 'project' and shown < 5 %}
     <a href="{{ SITEURL }}{{ a.url }}" class="project-card carousel-item">
       {% if a.metadata.get('image') %}
       <img src="{{ a.metadata.get('image') }}" alt="{{ a.title }}">
