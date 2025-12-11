@@ -27,31 +27,27 @@
   </div>
 
   <aside class="sidebar">
-    <div class="search-box">
-      <input placeholder="Search" />
-    </div>
-    <div class="widget">
-      <h3>Categories</h3>
-      <ul class="categories-list">
-        {# Build unique categories from articles (safe even if category pages aren't generated) #}
-        {% set seen = [] %}
-        {% for a in articles %}
-          {% if a.category and a.category not in seen %}
-            {% set _ = seen.append(a.category) %}
-          {% endif %}
-        {% endfor %}
-        {% for c in seen %}
-          <li><span class="cat-badge">{{ c }}</span></li>
-        {% endfor %}
-      </ul>
-    </div>
-    <div class="widget">
-      <h3>Recent Posts</h3>
-      <ul>
-        {% for post in articles[:5] %}
-        <li><a href="{{ SITEURL }}{{ post.url }}">{{ post.title }}</a></li>
-        {% endfor %}
-      </ul>
+    <div class="sidebar-spacer"></div>
+
+    <div class="sidebar-widget-group">
+        <div class="search-box widget">
+            <input placeholder="Search" />
+        </div>
+        <div class="widget">
+            <h3>Categories</h3>
+            <ul class="categories-list">
+                {# Build unique categories from articles #}
+                {% set seen = [] %}
+                {% for a in articles %}
+                {% if a.category and a.category not in seen %}
+                {% set _ = seen.append(a.category) %}
+                {% endif %}
+                {% endfor %}
+                {% for c in seen %}
+                <li><a href="{{ SITEURL }}/category/{{ c|lower }}.html"><span class="cat-badge">{{ c }}</span></a></li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
   </aside>
 </div>
