@@ -1,6 +1,6 @@
 /* ============================================
    dz.dev — Refined Developer Portfolio
-   Cool Blue Professional Theme (v6 Hero Image Polish 16:9)
+   Cool Blue Professional Theme (v9 Final Typography)
    ============================================ */
 
 /* ---------- Design Tokens ---------- */
@@ -47,6 +47,7 @@
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
   --radius-md: 10px;
   --radius-lg: 14px;
+  --radius-xl: 20px;
   --radius-pill: 100px;
   
   --transition-base: 0.2s ease;
@@ -184,7 +185,7 @@ body {
   position: relative;
   max-width: 900px;
   margin: 0 auto;
-  /* NEW: Force 16:9 Aspect Ratio on the container */
+  /* Force 16:9 Aspect Ratio on the container */
   aspect-ratio: 16 / 9; 
 }
 
@@ -195,7 +196,6 @@ body {
   border-radius: 24px;
   box-shadow: var(--shadow-xl);
   display: block;
-  /* OLD: background gradient, remove if using image */
   background: transparent;
   /* FIX: Remove the square border */
   border: none; 
@@ -268,11 +268,31 @@ body {
   transform: translateY(-2px);
 }
 
-/* ---------- Sections Clean Up ---------- */
+/* ---------- Sections and Headers ---------- */
 .recent-section,
 .projects-preview {
   background: transparent;
   padding: var(--space-xl) 0;
+}
+
+/* Projects Page Title and Subtitle Styling */
+.projects-page-section {
+    padding-top: var(--space-2xl); /* Extra space at the top of the page */
+    padding-bottom: var(--space-2xl);
+}
+
+.projects-page-section .page-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin: 0 0 0.25rem;
+}
+
+.projects-page-section .page-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2xl);
+    max-width: 700px;
 }
 
 .recent-section h2,
@@ -297,20 +317,106 @@ body {
   border-radius: 50%;
 }
 
+/* ------------------------------------------
+   PROJECTS PAGE FEATURED HERO CARD
+   ------------------------------------------ */
+.projects-featured-hero {
+    margin-bottom: var(--space-2xl);
+}
+
+.project-hero-card {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Image wider than content */
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl); 
+    box-shadow: var(--shadow-lg); 
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden; /* Important for rounding images */
+}
+
+.project-hero-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15); /* Stronger lift effect */
+    border-color: var(--accent-light);
+}
+
+.hero-card-media {
+    aspect-ratio: 16 / 9;
+    background: var(--bg-blue-tint);
+    overflow: hidden;
+}
+
+.hero-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.project-hero-card:hover .hero-card-media img {
+    transform: scale(1.05);
+}
+
+.hero-card-content {
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-card-content .tag {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 0.3rem 0.7rem;
+    border-radius: var(--radius-md);
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+}
+
+.hero-card-content h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 0 0 var(--space-sm);
+    color: var(--text);
+    transition: color 0.2s ease;
+}
+
+.project-hero-card:hover h2 {
+    color: var(--accent);
+}
+
+.hero-card-content p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+}
+
+
 /* ---------- Cards (Grid) and Hover Effect ---------- */
 .recent-grid {
+  /* This is now overridden by .recent-rail below */
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--space-md);
 }
 
 .projects-grid {
+  /* Used for both homepage preview and dedicated projects page */
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: var(--space-md);
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: var(--space-xl);
+}
+/* Reduce gap for the preview section on the home page */
+.projects-preview .projects-grid {
+    gap: var(--space-md);
 }
 
-.card, .project-card, .post-card {
+
+.card, .project-card, .post-card, .post-card-home {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -321,31 +427,49 @@ body {
 }
 
 /* Hover Effect: Lift and Glow */
-.card:hover, .project-card:hover, .post-card:hover {
+.card:hover, .project-card:hover, .post-card:hover, .post-card-home:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-lg);
   border-color: var(--accent-soft);
 }
 
 /* Card Content Styles */
-.card h3, .project-card h3 {
+.card h3, .project-card h3, .post-card-home h3 {
   font-size: 1.1rem;
   font-weight: 700;
   margin: 0 0 var(--space-xs);
 }
 
-.card h3 a { color: var(--text); text-decoration: none; }
-.card h3 a:hover { color: var(--accent); }
+.card h3 a, .post-card-home h3 a { color: var(--text); text-decoration: none; }
+.card h3 a:hover, .post-card-home h3 a:hover { color: var(--accent); }
 
-.card .muted { font-size: 0.8rem; color: var(--text-muted); margin-bottom: var(--space-sm); }
-.card .summary { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+.card .muted, .post-card-home .muted { font-size: 0.8rem; color: var(--text-muted); margin-bottom: var(--space-sm); }
+.card .summary, .post-card-home .summary { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
 
-/* Project Card Specifics */
+/* Project Card Specifics - STYLED AS A LINK */
 .project-card { 
   display: flex; 
   gap: var(--space-md); 
   padding: var(--space-md);
   align-items: center; 
+  text-decoration: none; /* Make the link behave like a card */
+  color: inherit; /* Inherit text color */
+}
+
+.project-card:hover h3 {
+    color: var(--accent); /* Color shift on hover */
+}
+.project-card .read-more {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent);
+    margin-top: var(--space-sm);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+.project-card:hover .read-more {
+    opacity: 1;
 }
 
 .project-card img {
@@ -357,6 +481,40 @@ body {
   background: var(--bg);
   border: 1px solid var(--border-light);
 }
+
+/* ------------------------------------------
+   HORIZONTAL SCROLL RAIL FOR RECENT ARTICLES
+   ------------------------------------------ */
+.recent-rail {
+    /* Override grid properties to enable horizontal scrolling */
+    display: flex; /* Use flexbox to keep items in a row */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    padding-bottom: 20px; /* Space for the scrollbar */
+    scroll-snap-type: x mandatory; /* Optional: Snap to cards */
+    gap: var(--space-lg); /* Increase gap slightly */
+    -webkit-overflow-scrolling: touch; /* Better scrolling on iOS */
+}
+
+/* Ensure cards are fixed width inside the rail */
+.recent-rail .card {
+    min-width: 300px; /* Fixed width for card in rail */
+    scroll-snap-align: start;
+    flex-shrink: 0; /* Prevents cards from shrinking */
+}
+
+.recent-rail::-webkit-scrollbar {
+    height: 8px;
+}
+
+.recent-rail::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 10px;
+}
+
+.recent-rail::-webkit-scrollbar-track {
+    background: var(--bg-subtle);
+}
+
 
 /* ---------- Blog Page Layout & Alignment Fix ---------- */
 .blog-page {
@@ -541,6 +699,135 @@ body {
   transform: translateY(-2px);
 }
 
+/* ------------------------------------------
+   ARTICLE PAGE CONTENT (Typography and Layout)
+   ------------------------------------------ */
+.article-page-section {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+    max-width: 800px; /* Center and constrain the width for reading comfort */
+}
+
+.article-header {
+    margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--border);
+}
+
+.article-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin: 0 0 var(--space-md);
+    line-height: 1.2;
+}
+
+.article-meta {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.article-meta a.category {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.article-content {
+    line-height: 1.75;
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+}
+
+/* Typography Overrides for Markdown */
+.article-content h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--border-light);
+}
+.article-content h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-sm);
+}
+
+.article-content a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--accent-light);
+    transition: var(--transition-base);
+}
+.article-content a:hover {
+    border-bottom-style: solid;
+}
+
+.article-content p, .article-content ul, .article-content ol {
+    margin-bottom: var(--space-lg);
+}
+
+.article-content ul, .article-content ol {
+    padding-left: 1.5rem;
+    margin-left: 0;
+}
+
+/* Blockquotes: Professional look */
+.article-content blockquote {
+    margin: var(--space-xl) 0;
+    padding: var(--space-md) var(--space-lg);
+    border-left: 4px solid var(--accent-light);
+    background: var(--bg-blue-tint);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+/* Code Blocks */
+.article-content pre {
+    background: #1e293b; /* Slate dark background */
+    color: #f8fafc; /* Light text */
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    font-size: 0.9rem;
+    margin-bottom: var(--space-lg);
+}
+/* Inline Code */
+.article-content code {
+    background: var(--bg-subtle);
+    color: var(--text);
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+.article-content pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+    font-size: inherit;
+}
+
+
+/* Tags in Footer */
+.article-footer {
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--border);
+}
+.tag-list strong {
+    font-weight: 600;
+    color: var(--text);
+}
+.tag-badge { /* Re-using existing badge style */
+    margin-right: 0.5rem;
+}
+
+
 /* Responsive Adjustments */
 @media (max-width: 800px) {
   .site-header { top: 0; padding: 0; }
@@ -552,6 +839,38 @@ body {
     padding-bottom: 56.25%; /* Traditional 16:9 padding trick if aspect-ratio not supported widely, or just let it shrink */
   }
   
+  .projects-featured-hero {
+      margin-bottom: var(--space-xl);
+  }
+  
+  .project-hero-card {
+      grid-template-columns: 1fr; /* Stack on mobile */
+      border-radius: var(--radius-lg);
+  }
+  
+  .hero-card-content {
+      padding: var(--space-lg);
+  }
+
+  .projects-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+  }
+  
+  .article-page-section {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-xl);
+  }
+  
+  .article-title {
+    font-size: 2rem;
+  }
+  
+  .article-content {
+    font-size: 1rem;
+  }
+
+
   .blog-page { grid-template-columns: 1fr; padding-block: var(--space-xl); }
   .feed { padding-top: 0; }
   .sidebar-spacer { display: none; } /* Hide spacer on mobile */

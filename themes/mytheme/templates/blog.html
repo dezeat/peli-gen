@@ -27,8 +27,6 @@
   </div>
 
   <aside class="sidebar">
-    <div class="sidebar-spacer"></div>
-
     <div class="sidebar-widget-group">
         <div class="search-box widget">
             <input placeholder="Search" />
@@ -36,7 +34,7 @@
         <div class="widget">
             <h3>Categories</h3>
             <ul class="categories-list">
-                {# Build unique categories from articles #}
+                {# Build unique categories from articles (safe even if category pages aren't generated) #}
                 {% set seen = [] %}
                 {% for a in articles %}
                 {% if a.category and a.category not in seen %}
@@ -48,7 +46,7 @@
                 {% endfor %}
             </ul>
         </div>
-    </div>
+        </div>
   </aside>
 </div>
 {% endblock %}

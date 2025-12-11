@@ -40,7 +40,7 @@ SOCIAL = (
 ARTICLE_PATHS = ['blog', 'projects']
 PAGE_PATHS = ['pages']
 STATIC_PATHS = ['images']
-PROJECT_PATHS = ['projects']  # if using a separate type
+PROJECT_PATHS = ['projects'] 
 
 # Only generate the direct templates we need (index, plus custom blog/projects pages)
 DIRECT_TEMPLATES = ['index', 'blog', 'projects']
@@ -51,7 +51,10 @@ CATEGORIES_SAVE_AS = ''
 AUTHORS_SAVE_AS = ''
 ARCHIVES_SAVE_AS = ''
 
-DEFAULT_PAGINATION = 5
+# --- FIX: Explicitly disable pagination since we handle article lists manually ---
+PAGINATE = False 
+# --- FIX: We remove DEFAULT_PAGINATION = 5 to ensure pagination is disabled ---
+
 
 # Uncomment following line if you want document-relative URLs when developing
 # RELATIVE_URLS = True
