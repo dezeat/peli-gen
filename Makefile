@@ -10,12 +10,11 @@ PELICAN_CONF := $(PYDIR)/pelicanconf.py
 
 help:
 	@echo "Usage: make <target>"
-	@echo "  help         Show this help"
-	@echo "  build  Build static site (production)"
-	@echo "  serve        Run dev server with autoreload"
-	@echo "  stop  Stop dev server (if running in background)"
-	@echo "  clean        Remove generated output/"
-
+	@echo "  help   -  Show this help"
+	@echo "  build  -  Build static site (production)"
+	@echo "  serve  -  Run dev server with autoreload"
+	@echo "  stop   -  Stop dev server (if running in background)"
+	@echo "  clean  -  Remove generated output/"
 build:
 	poetry run pelican $(INPUT) -o $(OUTPUT) -s $(PELICAN_CONF)
 
