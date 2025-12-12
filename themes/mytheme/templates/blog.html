@@ -1,51 +1,62 @@
-  {# Blog feed page: single-column feed, sidebar, pagination #}
-  {% extends "base.html" %}
-
-  {% block content %}
-  <div class="blog-page">
-    <div class="feed">
-      {% for article in articles %}
-      <article class="post-card">
-        <div style="display:flex; align-items:flex-start; gap:1rem">
-          {% if article.metadata.get('image') %}
-          <img class="thumb" src="{{ SITEURL }}/{{ article.metadata.get('image') }}" alt="{{ article.title }}">
-          {% endif %}
-          <div>
-            <header class="post-head">
-              <h2 class="post-title"><a href="{{ SITEURL }}{{ article.url }}">{{ article.title }}</a></h2>
-              <div class="meta">{{ article.date.strftime('%Y-%m-%d') }} • {{ article.author }}</div>
-            </header>
-            <div class="post-summary">{{ article.summary }}</div>
-            <p class="read-more"><a href="{{ SITEURL }}{{ article.url }}">Read →</a></p>
-          </div>
+{# Blog feed page: single-column feed, sidebar, search #}
+{% extends "base.html" %}
+{% block content %}
+<div class="blog-page">
+  <div class="feed">
+    {% for article in articles %}
+    <article class="post-card" data-search="{{ article.title|lower }} {{ article.summary|lower }} {{ article.category|lower if article.category else '' }} {{ article.author|lower }}">
+      <div style="display:flex; align-items:flex-start; gap:1rem">
+        {% if article.metadata.get('image') %}
+        <img class="thumb" src="{{ SITEURL }}/{{ article.metadata.get('image') }}" alt="{{ article.title }}">
+        {% endif %}
+        <div>
+          <header class="post-head">
+            <h2 class="post-title"><a href="{{ SITEURL }}{{ article.url }}">{{ article.title }}</a></h2>
+            <div class="meta">{{ article.date.strftime('%Y-%m-%d') }} • {{ article.author }}</div>
+          </header>
+          <div class="post-summary">{{ article.summary }}</div>
+          <p class="read-more"><a href="{{ SITEURL }}{{ article.url }}">Read →</a></p>
         </div>
-      </article>
-      {% endfor %}
-
-      <nav class="pagination">{# implement pagination if needed #}</nav>
+      </div>
+    </article>
+    {% endfor %}
+    
+    <div class="no-results" style="display: none;">
+      <p>No posts found matching your search.</p>
     </div>
-
-    <aside class="sidebar">
-      <div class="sidebar-widget-group">
-          <div class="search-box widget">
-              <input placeholder="Search" />
-          </div>
-          <div class="widget">
-              <h3>Categories</h3>
-              <ul class="categories-list">
-                  {# Build unique categories from articles (safe even if category pages aren't generated) #}
-                  {% set seen = [] %}
-                  {% for a in articles %}
-                  {% if a.category and a.category not in seen %}
-                  {% set _ = seen.append(a.category) %}
-                  {% endif %}
-                  {% endfor %}
-                  {% for c in seen %}
-                  <li><a href="{{ SITEURL }}/category/{{ c|lower }}.html"><span class="cat-badge">{{ c }}</span></a></li>
-                  {% endfor %}
-              </ul>
-          </div>
-          </div>
-    </aside>
   </div>
-  {% endblock %}
+  
+  <aside class="sidebar">
+    <div class="sidebar-widget-group">
+      <div class="search-box widget">
+        <input type="text" id="search-input" placeholder="Search posts..." autocomplete="off" />
+        <button type="button" id="clear-search" class="search-clear" aria-label="Clear search" style="display: none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="widget">
+        <h3>Categories</h3>
+        <ul class="categories-list">
+          {% set seen = [] %}
+          {% for a in articles %}
+            {% if a.category and a.category not in seen %}
+              {% set _ = seen.append(a.category) %}
+            {% endif %}
+          {% endfor %}
+          {% for c in seen %}
+          <li>
+            <button type="button" class="cat-badge category-filter" data-category="{{ c|lower }}">{{ c }}</button>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<script src="{{ SITEURL }}/theme/js/search.js"></script>
+{% endblock %}
