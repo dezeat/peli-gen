@@ -585,6 +585,112 @@ body {
   margin-bottom: var(--space-lg);
 }
 
+/* ---------- Grid Project Cards FIX (Below Hero) ---------- */
+
+/* The outer card container (the <a> tag) */
+.project-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    text-decoration: none;
+    color: inherit;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent-soft);
+}
+
+/* The new wrapper for the image */
+.project-media {
+    width: 100%;
+    height: 140px; /* Explicit height */
+    flex-shrink: 0;
+    overflow: hidden;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border-light);
+}
+
+/* The actual image inside the wrapper */
+.project-card img {
+  width: 100%;
+  height: 100%; 
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block; /* Ensure it behaves as expected */
+}
+
+.project-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Optional Placeholder style for missing images */
+.project-placeholder {
+  width: 100%;
+  height: 140px;
+  background: var(--bg-blue-tint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-light);
+  flex-shrink: 0; 
+  font-size: 0.9rem;
+}
+
+/* Project content area */
+.project-card .project-content {
+    padding: var(--space-md) var(--space-lg) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Allows content area to take up remaining space */
+}
+
+.project-card .project-content h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 var(--space-xs);
+  flex-shrink: 0;
+  color: var(--text);
+  /* Truncation styles for title (copied from .card h3) */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.4;
+  min-height: 2.94em;
+  max-height: 2.94em;
+}
+
+.project-card .project-content p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+    flex: 1;
+    /* Truncation styles for summary (copied from .card .summary) */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: var(--space-sm);
+}
+
+.project-card .read-more {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: var(--space-sm);
+  flex-shrink: 0;
+}
 /* ---------- Blog Page ---------- */
 .blog-page {
   display: grid;

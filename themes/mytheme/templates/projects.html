@@ -32,10 +32,14 @@
             {% if loop.index0 > 0 %}
             
             <a href="{{ SITEURL }}{{ a.url }}" class="project-card">
-                {% if a.metadata.get('image') %}
-                <img src="{{ a.metadata.get('image') }}" alt="{{ a.title }}">
-                {% endif %}
                 
+                {% if a.metadata.get('image') %}
+                <div class="project-media">
+                    <img src="{{ a.metadata.get('image') }}" alt="{{ a.title }}">
+                </div>
+                {% else %}
+                <div class="project-placeholder">No Image</div>
+                {% endif %}
                 <div class="project-content">
                     <h3>{{ a.title }}</h3>
                     <p>{{ a.summary }}</p>
@@ -47,4 +51,4 @@
         {% endfor %}
     </div>
 </section>
-{% endblock %}
+{% endblock %}  
