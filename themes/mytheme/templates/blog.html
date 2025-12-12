@@ -1,51 +1,51 @@
-{# Blog feed page: single-column feed, sidebar, pagination #}
-{% extends "base.html" %}
+  {# Blog feed page: single-column feed, sidebar, pagination #}
+  {% extends "base.html" %}
 
-{% block content %}
-<div class="blog-page">
-  <div class="feed">
-    {% for article in articles %}
-    <article class="post-card">
-      <div style="display:flex; align-items:flex-start; gap:1rem">
-        {% if article.metadata.get('image') %}
-        <img class="thumb" src="{{ SITEURL }}/{{ article.metadata.get('image') }}" alt="{{ article.title }}">
-        {% endif %}
-        <div>
-          <header class="post-head">
-            <h2 class="post-title"><a href="{{ SITEURL }}{{ article.url }}">{{ article.title }}</a></h2>
-            <div class="meta">{{ article.date.strftime('%Y-%m-%d') }} • {{ article.author }}</div>
-          </header>
-          <div class="post-summary">{{ article.summary }}</div>
-          <p class="read-more"><a href="{{ SITEURL }}{{ article.url }}">Read →</a></p>
+  {% block content %}
+  <div class="blog-page">
+    <div class="feed">
+      {% for article in articles %}
+      <article class="post-card">
+        <div style="display:flex; align-items:flex-start; gap:1rem">
+          {% if article.metadata.get('image') %}
+          <img class="thumb" src="{{ SITEURL }}/{{ article.metadata.get('image') }}" alt="{{ article.title }}">
+          {% endif %}
+          <div>
+            <header class="post-head">
+              <h2 class="post-title"><a href="{{ SITEURL }}{{ article.url }}">{{ article.title }}</a></h2>
+              <div class="meta">{{ article.date.strftime('%Y-%m-%d') }} • {{ article.author }}</div>
+            </header>
+            <div class="post-summary">{{ article.summary }}</div>
+            <p class="read-more"><a href="{{ SITEURL }}{{ article.url }}">Read →</a></p>
+          </div>
         </div>
-      </div>
-    </article>
-    {% endfor %}
+      </article>
+      {% endfor %}
 
-    <nav class="pagination">{# implement pagination if needed #}</nav>
+      <nav class="pagination">{# implement pagination if needed #}</nav>
+    </div>
+
+    <aside class="sidebar">
+      <div class="sidebar-widget-group">
+          <div class="search-box widget">
+              <input placeholder="Search" />
+          </div>
+          <div class="widget">
+              <h3>Categories</h3>
+              <ul class="categories-list">
+                  {# Build unique categories from articles (safe even if category pages aren't generated) #}
+                  {% set seen = [] %}
+                  {% for a in articles %}
+                  {% if a.category and a.category not in seen %}
+                  {% set _ = seen.append(a.category) %}
+                  {% endif %}
+                  {% endfor %}
+                  {% for c in seen %}
+                  <li><a href="{{ SITEURL }}/category/{{ c|lower }}.html"><span class="cat-badge">{{ c }}</span></a></li>
+                  {% endfor %}
+              </ul>
+          </div>
+          </div>
+    </aside>
   </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-widget-group">
-        <div class="search-box widget">
-            <input placeholder="Search" />
-        </div>
-        <div class="widget">
-            <h3>Categories</h3>
-            <ul class="categories-list">
-                {# Build unique categories from articles (safe even if category pages aren't generated) #}
-                {% set seen = [] %}
-                {% for a in articles %}
-                {% if a.category and a.category not in seen %}
-                {% set _ = seen.append(a.category) %}
-                {% endif %}
-                {% endfor %}
-                {% for c in seen %}
-                <li><a href="{{ SITEURL }}/category/{{ c|lower }}.html"><span class="cat-badge">{{ c }}</span></a></li>
-                {% endfor %}
-            </ul>
-        </div>
-        </div>
-  </aside>
-</div>
-{% endblock %}
+  {% endblock %}

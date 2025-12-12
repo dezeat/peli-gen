@@ -1,43 +1,46 @@
 {# Static page: About using base layout #}
 {% extends "base.html" %}
-
 {% block content %}
-  <section class="container page-single">
-    
-    {# --- Dedicated Layout for 'About' Page --- #}
-    
-    <div class="about-layout">
-      <div class="about-profile">
-        <div class="about-avatar-container">
-          <img src="{{ SITEURL }}/images/gh_pic.png" alt="{{ AUTHOR }}" class="about-avatar">
-        </div>
-        
-        <div class="about-actions">
-          
-          {# ADDED EMAIL BUTTON #}
-          <a href="mailto:your.email@example.com" class="btn btn-full w-full">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            Email Me
-          </a>
-          
-          <a href="https://github.com/" target="_blank" class="btn btn-ghost w-full">
+<section class="container page-single">
+  <div class="about-layout">
+    <div class="about-profile">
+      <div class="about-avatar-container">
+        <img src="{{ SITEURL }}/images/gh_pic.png" alt="{{ AUTHOR }}" class="about-avatar">
+      </div>
+      <div class="about-actions">
+        <a href="mailto:{{ EMAIL|default('your.email@example.com') }}" class="btn btn-full w-full">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          Email Me
+        </a>
+        {% for name, link in SOCIAL %}
+          {% if name == 'github' %}
+          <a href="{{ link }}" target="_blank" class="btn btn-ghost w-full">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.169 6.83 9.488.5.092.682-.217.682-.483 0-.237-.008-.885-.013-1.845-2.78 0-3.375-1.353-3.375-1.353-.454-1.157-1.11-1.468-1.11-1.468-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.342 1.082 2.91.824.092-.64.359-1.082.688-1.332-2.22-.251-4.555-1.116-4.555-4.929 0-1.087.389-1.979 1.029-2.675-.103-.252-.446-1.266.098-2.638 0 0 .84-.268 2.75 1.022A9.638 9.638 0 0 1 12 6.82c.85.004 1.702.112 2.502.324 1.909-1.29 2.747-1.022 2.747-1.022.546 1.372.202 2.386.099 2.638.64.696 1.028 1.588 1.028 2.675 0 3.83-2.339 4.681-4.568 4.926.37.317.67.922.67 1.855 0 1.334-.012 2.41-.012 2.748 0 .267.18.583.688.482A10.027 10.027 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z" clip-rule="evenodd" />
+            </svg>
             GitHub
           </a>
-          <a href="https://linkedin.com/" target="_blank" class="btn btn-ghost w-full">
+          {% elif name == 'linkedin' %}
+          <a href="{{ link }}" target="_blank" class="btn btn-ghost w-full">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#0A66C2">
+              <path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2ZM8 19H5V9h3v10ZM6.5 7.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3ZM19 19h-3v-5.5c0-1.4-.5-2.5-1.9-2.5-1 0-1.6.7-1.9 1.4-.1.2-.1.5-.1.8V19h-3V9h3v1.4c.4-.6 1.1-1.5 2.7-1.5 2 0 3.5 1.3 3.5 4.1V19Z"/>
+            </svg>
             LinkedIn
           </a>
-        </div>
-      </div>
-
-      <div class="about-bio">
-        <h1 class="about-title">Hi, I’m dezeat.</h1>
-        <p class="about-subtitle">Data Enthusiast & Self-Thaught Developer</p>
-        
-        <div class="about-prose">
-           {{ page.content }}
-        </div>
+          {% endif %}
+        {% endfor %}
       </div>
     </div>
-
-  </section>
+    <div class="about-bio">
+      <h1 class="about-title">Hi, I'm {{ AUTHOR }}.</h1>
+      <p class="about-subtitle">Data Enthusiast & Self-Taught Developer</p>
+      <div class="about-prose">
+        {{ page.content }}
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
