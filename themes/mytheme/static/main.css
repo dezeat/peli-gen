@@ -83,7 +83,7 @@ body {
   padding-block: var(--space-lg);
 }
 
-/* ---------- Floating "Island" Header ---------- */
+/* ---------- Floating "Island" Header (UPDATED) ---------- */
 .site-header {
   position: sticky;
   top: 20px; 
@@ -118,9 +118,19 @@ body {
 }
 
 .brand {
+  /* Container for the clickable link */
   display: flex;
   align-items: center;
+}
+
+/* Fix: New anchor tag must act like the old .brand to fit the header-inner flex */
+.brand-clickable {
+  display: flex; 
+  align-items: center;
   gap: 0.75rem;
+  text-decoration: none;
+  color: var(--text);
+  transition: opacity 0.2s ease;
 }
 
 .brand-avatar {
@@ -131,7 +141,8 @@ body {
   transition: var(--transition-base);
 }
 
-.brand:hover .brand-avatar {
+/* Hover effect moved to the new clickable element */
+.brand-clickable:hover .brand-avatar {
   transform: scale(1.1);
 }
 
@@ -140,11 +151,12 @@ body {
   flex-direction: column;
 }
 
+/* brand-link is now a <p> tag */
 .brand-link {
   font-weight: 700;
   font-size: 1rem;
   color: var(--text);
-  text-decoration: none;
+  margin: 0;
   letter-spacing: -0.01em;
 }
 

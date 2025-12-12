@@ -2,14 +2,12 @@ Title: About
 Date: 2025-10-16
 Slug: about
 
+I'm a Data Engineer based in Hamburg, working on cloud-based data platforms with Azure, Databricks, Python, and PySpark. My day-to-day involves building pipelines end-to-end — from requirements to deployment — and co-maintaining an internal data engineering framework with my team.
 
+I didn't take the classic CS route. I studied political science with a focus on quantitative methods, worked a data-heavy student job during the pandemic, and gradually moved into engineering from there. I learned by doing: building things, breaking things, reading a lot after work, and picking up software engineering habits along the way.
 
-I’m a self-taught Data Engineer based in Hamburg. I’ve spent the last few years working on data ingestion, modeling, and internal tooling across different cloud environments. I like understanding how systems behave, how data moves, and how all the pieces connect.
+What got me here was curiosity. I've been fascinated by computers and the internet since I was a kid — building my first PC at thirteen, spending way too many hours online, and always wanting to understand how things work under the hood. That curiosity is still what drives me today.
 
-Even before AI became the big thing, I was already interested in the intersection of computer science, data, cloud, and the wider internet economy. That curiosity is what pushed me into engineering in the first place, and it still drives how I learn and work today.
-
-I didn’t study CS; I learned by doing, experimenting, breaking things, and asking a lot of questions. My approach is simple: stay curious, dig into problems, and try to actually understand what’s going on under the hood.
-
-This site is where I write down what I learn, explore topics across the stack, and document small projects. If you’re into data engineering, backend systems, or just the broader tech world, feel free to look around.
+This site is where I write down what I'm learning, document small projects, and reflect on patterns in data engineering. Writing helps me structure my thoughts — maybe that's the social science background showing. If you're into data engineering, cloud platforms, or just figuring things out as you go, feel free to look around.
 
 

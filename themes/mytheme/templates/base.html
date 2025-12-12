@@ -10,12 +10,14 @@
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
-        <img class="brand-avatar" src="{{ SITEURL }}/images/brand_image.png" alt="{{ AUTHOR }}">
-        <div class="brand-meta">
-          <a href="{{ SITEURL or '/' }}" class="brand-link">{{ SITENAME }}</a>
-          <p class="site-desc">{{ SITE_DESCRIPTION }}</p>
+        <a href="{{ SITEURL or '/' }}" class="brand-clickable">
+          <img class="brand-avatar" src="{{ SITEURL }}/images/brand_image.png" alt="{{ AUTHOR }}">
+          <div class="brand-meta">
+            <p class="brand-link">{{ SITENAME }}</p> 
+            <p class="site-desc">{{ SITE_DESCRIPTION }}</p>
+          </div>
+        </a>
         </div>
-      </div>
       
       <nav class="site-nav">
         <a href="{{ SITEURL }}/blog.html">Blog</a>

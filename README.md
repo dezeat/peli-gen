@@ -1,54 +1,105 @@
-# Pelican Static Site Generator - Quick Reference
 
-Dieses Repository nutzt [Pelican](https://getpelican.com/) als Static Site Generator und wird auf GitHub Pages gehostet. Es verwendet eine moderne, mobile-first Struktur mit TailwindCSS und einer modularen Content-Organisation.
+# Pelican Static Portfolio & Blog Site
 
-## 🚀 Wichtigste CLI-Befehle
+This repository contains a minimal, modern static site built with [Pelican](https://getpelican.com/), managed with Poetry, and styled for mobile-first, responsive design. The site showcases a personal brand, blog posts, and projects, using a custom theme and modular content structure.
 
-### Lokale Entwicklung
+---
 
-```bash
-# Entwicklungsserver starten (mit automatischem Reload)
-pelican --autoreload --listen
+## 🚀 Quickstart
 
-# Alternative: Server mit spezifischem Port
-# peli-gen — minimal Pelican site
+**Prerequisites:** Poetry, Python 3.10+, (optional: Node.js & Tailwind CLI for custom CSS)
 
-Lightweight Pelican site scaffold (dezeat).
-
-## Quickstart
-
-Prerequisites: Poetry and Python (3.10+ recommended).
-
-1. Install dependencies:
-
+1. **Install dependencies:**
+   ```bash
    poetry install
+   ```
+2. **Build the static site:**
+   ```bash
+   make build
+   ```
+3. **Start the development server (autoreload):**
+   ```bash
+   make serve
+   ```
+4. **Stop the development server:**
+   ```bash
+   make stop
+   ```
+   > Pelican does not provide a built-in stop command for the dev server. The Makefile's `stop` target will stop the server if running, or clean up the PID file if the process is already gone.
 
-2. Build the static site (output written to `output/`):
+---
 
-   make html
+## 🗂️ Content Structure
 
-3. Run the dev server (autoreload):
+```
+content/
+  blog/       # Markdown files for blog posts
+  projects/   # Markdown files for projects
+  pages/      # About, Contact, etc.
+  images/     # Shared images
+```
 
-   make dev
+- **Blog posts:** `content/blog/` (type: article)
+- **Projects:** `content/projects/` (type: project or article with `Type: project`)
+- **Static pages:** `content/pages/` (About, Contact)
 
-4. Start a background preview (opens the browser):
+---
 
-   make preview
+## 🎨 Theme & Templates
 
-   Stop it with:
+- Custom theme: `themes/mytheme/`
+- Key templates:
+  - `index.html`: Home/landing page (hero, recent posts, project preview)
+  - `blog.html`: Blog feed (single-column, sidebar)
+  - `projects.html`: Project grid
+  - `page.html`: Static pages (About, Contact)
 
-   make stop-preview
+---
 
-### Notes
+## ⚙️ Configuration
 
-- Tailwind is optional. To compile Tailwind CSS you need Node.js and the Tailwind CLI; then run `make tailwind`.
-- A fallback `themes/mytheme/static/main.css` exists so the site looks good without a Tailwind build.
-- This cleanup was performed locally (Plan B). No commits or pushes were made by the assistant.
+- Main config: `pelicanconf.py`, `publishconf.py`
+- Example (see `pelicanconf.py`):
+  ```python
+  ARTICLE_PATHS = ['blog']
+  PAGE_PATHS = ['pages']
+  STATIC_PATHS = ['images']
+  PROJECT_PATHS = ['projects']  # if using a separate type
+  ```
 
-## Layout
+---
 
-- Theme: `themes/mytheme/` (custom minimal theme)
-- Content: `content/` (blog, projects, pages, images)
-- Configuration: `pelicanconf.py` and `publishconf.py`
+## 🛠️ Makefile Commands
 
-If you'd like me to create a single commit with these cleanup changes and push them to `main`, say so and I'll do it.
+| Command     | Description                          |
+|-------------|--------------------------------------|
+| make build  | Build static site to `output/`       |
+| make serve  | Start dev server with autoreload     |
+| make stop   | Stop the dev server (if running)     |
+| make clean  | Remove generated output/             |
+| make tailwind | (Optional) Build Tailwind CSS      |
+
+---
+
+## 📝 Implementation Notes
+
+- Mobile-first, responsive (TailwindCSS recommended)
+- Modular content: easy to add new posts/projects
+- Shared color/typography/spacing
+- Smooth hover effects, clean layout
+- All dependencies managed with Poetry
+
+---
+
+## 📁 Project Layout
+
+- Theme: `themes/mytheme/`
+- Content: `content/`
+- Output: `output/`
+- Config: `pelicanconf.py`, `publishconf.py`
+
+---
+
+## License
+
+See [LICENSE](LICENSE).
