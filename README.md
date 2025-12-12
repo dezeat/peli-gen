@@ -81,21 +81,6 @@ Where to edit:
 
 ---
 
-## Notes about removed/ignored files
-
-- This repository no longer ships an `Invoke` tasks file. Command-line automation is provided via the `Makefile`.
-- Build artifacts and large generated folders are ignored: `output/`, `node_modules/`, `__pycache__/`.
-
----
-
-## Contributing / Adding content (short)
-
-- Create a new Markdown file in the appropriate folder (`content/blog/`, `content/projects/`, or `content/pages/`).
-- Use Pelican metadata at the top of the file (Title, Date, Tags, etc.).
-- Run `make launch` to rebuild and preview locally.
-
----
-
 
 ## Pelican configuration — details and how it maps to this repo
 
@@ -125,12 +110,6 @@ Important settings in `pelicanconf.py` (what they mean here):
 - `DELETE_OUTPUT_DIRECTORY = True`: safe to remove local `output/` before publishing.
 - Feed generation and analytics options are usually enabled here for production builds.
 
-How settings interact with commands in this repo:
-
-- `make build` ⇒ runs `pelican content -s pelicanconf.py` (local build; uses `PATH`, `ARTICLE_PATHS`, etc.).
-- `make serve` ⇒ runs `pelican --autoreload --listen -s pelicanconf.py`, serving `output/` locally (auto-reloads on content/template changes).
-- `make stop` ⇒ kills running pelican `--listen` processes for the current user (the Makefile target handles stale PID files and multiple processes).
-- `make launch` ⇒ runs `make clean && make build && make serve`.
 
 ---
 

@@ -74,24 +74,16 @@
     {% set shown = 0 %}
     {% for a in articles %}
       {% if a.metadata is defined and a.metadata.get('type','')|lower == 'project' and shown < 5 %}
-    <a href="{{ SITEURL }}{{ a.url }}" class="project-card carousel-item">
+    <article class="card carousel-item">
       {% if a.metadata.get('image') %}
-      <img src="{{ a.metadata.get('image') }}" alt="{{ a.title }}">
-      {% else %}
-      <div class="project-placeholder">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-          <circle cx="8.5" cy="8.5" r="1.5"></circle>
-          <polyline points="21 15 16 10 5 21"></polyline>
-        </svg>
-      </div>
+      <img src="{{ a.metadata.get('image') }}" alt="{{ a.title }}" class="card-thumb">
       {% endif %}
-      <div class="project-content">
-        <h3>{{ a.title }}</h3>
-        <p>{{ a.summary|truncate(80, True, '...') }}</p>
-        <span class="read-more">View project →</span>
+      <div class="card-content">
+        <h3><a href="{{ SITEURL }}{{ a.url }}">{{ a.title }}</a></h3>
+        <p class="muted">Project</p>
+        <p class="summary">{{ a.summary|truncate(100, True, '...') }}</p>
       </div>
-    </a>
+    </article>
         {% set shown = shown + 1 %}
       {% endif %}
     {% endfor %}
@@ -101,75 +93,5 @@
 </div>
 </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const carousels = document.querySelectorAll('.carousel');
-  
-  carousels.forEach(carousel => {
-    const cardWidth = carousel.querySelector('.carousel-item')?.offsetWidth || 340;
-    const gap = 24;
-    const scrollAmount = cardWidth + gap;
-    
-    // Keyboard navigation
-    carousel.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-      } else if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-      }
-    });
-    
-    // Mouse wheel horizontal scroll
-    carousel.addEventListener('wheel', (e) => {
-      if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) {
-        e.preventDefault();
-        carousel.scrollBy({ left: e.deltaY, behavior: 'auto' });
-      }
-    }, { passive: false });
-    
-    // Update fade visibility
-    const updateFades = () => {
-      const wrapper = carousel.closest('.carousel-wrapper');
-      const fadeLeft = wrapper.querySelector('.carousel-fade-left');
-      const fadeRight = wrapper.querySelector('.carousel-fade-right');
-      
-      if (fadeLeft) {
-        fadeLeft.style.opacity = carousel.scrollLeft > 10 ? '1' : '0';
-      }
-      if (fadeRight) {
-        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-        fadeRight.style.opacity = carousel.scrollLeft < maxScroll - 10 ? '1' : '0';
-      }
-    };
-    
-    carousel.addEventListener('scroll', updateFades);
-    window.addEventListener('resize', updateFades);
-    setTimeout(updateFades, 100);
-  });
-  
-  // Navigation buttons
-  document.querySelectorAll('.carousel-nav').forEach(nav => {
-    const carouselId = nav.dataset.carousel;
-    const carousel = document.getElementById(carouselId);
-    const prevBtn = nav.querySelector('.prev');
-    const nextBtn = nav.querySelector('.next');
-    
-    if (carousel && prevBtn && nextBtn) {
-      const cardWidth = carousel.querySelector('.carousel-item')?.offsetWidth || 340;
-      const gap = 24;
-      const scrollAmount = cardWidth + gap;
-      
-      prevBtn.addEventListener('click', () => {
-        carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-      });
-      
-      nextBtn.addEventListener('click', () => {
-        carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-      });
-    }
-  });
-});
-</script>
+<script src="{{ SITEURL }}/theme/js/carousel.js"></script>
 {% endblock %}
