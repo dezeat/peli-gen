@@ -1,12 +1,10 @@
 Title: Book Review — A Philosophy of Software Design (John Ousterhout)
-Date: 2025-12-12 00:00
+Date: 2025-12-11 21:00
 Type: article
-Image: images/review_philosophy_swd.svg
+Image: images/book_review.jpg
 Category: Book Reviews
 Tags: Software Design, Abstraction, Complexity, Engineering
 Summary: A concise, practical review of Ousterhout’s software design philosophy—deep modules, simple interfaces, and managing complexity.
-
-# Book Review: *A Philosophy of Software Design* by John Ousterhout
 
 As a data engineer who came into the field through a non-traditional path, I spend a good amount of time strengthening my understanding of the foundational principles of software development. *A Philosophy of Software Design* by John Ousterhout turned out to be one of the most useful books I’ve read in that regard. Its textbook-like structure and large number of concrete examples make the concepts clear, practical, and surprisingly memorable.
 

@@ -106,7 +106,7 @@ body {
   /* Sizing & Centering */
   max-width: 800px; 
   margin: 0 auto;   
-  padding: 0.6rem 1.5rem;
+  padding: 0.2rem 1.5rem;
   
   /* Layout */
   display: flex;
@@ -124,8 +124,8 @@ body {
 }
 
 .brand-avatar {
-  width: 36px;
-  height: 36px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   object-fit: cover;
   transition: var(--transition-base);
@@ -1109,4 +1109,203 @@ body {
   .section-header {
     margin-bottom: var(--space-md);
   }
+}
+/* ------------------------------------------
+   ABOUT PAGE LAYOUT (UPDATED)
+   Custom styles for the 'About' page structure
+   ------------------------------------------ */
+.page-single {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+}
+
+.about-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr; /* Sidebar for profile, wider column for bio */
+    gap: var(--space-2xl);
+    align-items: start; /* Start alignment to prevent profile column from stretching */
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl); 
+    box-shadow: var(--shadow-lg); 
+    padding: var(--space-2xl);
+    max-width: 1000px;
+    margin-inline: auto; /* Center the layout on the page */
+}
+
+/* --- Profile Section (Sidebar) --- */
+.about-profile {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    position: sticky; /* Sticky sidebar effect */
+    top: 100px; /* Adjust based on header height */
+}
+
+.about-avatar-container {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Square avatar container */
+    border-radius: 50%; /* <<<< MADE ROUND HERE */
+    overflow: hidden;
+    background: var(--bg-blue-tint);
+    box-shadow: var(--shadow-md);
+}
+
+.about-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+.about-avatar-container:hover .about-avatar {
+    transform: scale(1.05);
+}
+
+.about-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--border-light);
+}
+
+/* Re-styling the existing .btn for the about actions */
+.about-actions .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-align: center;
+    border-radius: var(--radius-md);
+    display: inline-flex; /* Enable flex for icon alignment */
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* New Primary Button Style (Email Me) */
+.about-actions .btn-full {
+    background: var(--accent);
+    color: var(--text-inverse);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+.about-actions .btn-full:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+}
+.about-actions .btn-full svg {
+    stroke: var(--text-inverse);
+}
+
+
+/* Ghost Button Style (GitHub, LinkedIn) */
+.about-actions .btn-ghost {
+    background: var(--bg-subtle);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    box-shadow: none;
+}
+.about-actions .btn-ghost:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-color: var(--accent-soft);
+    transform: translateY(-1px);
+}
+.about-actions .btn-ghost svg {
+    stroke: var(--text-secondary);
+}
+.about-actions .btn-ghost:hover svg {
+    stroke: var(--accent);
+}
+
+
+/* --- Bio Section (Main Content) --- */
+.about-bio {
+    min-width: 0; /* Ensures content doesn't overflow */
+}
+
+.about-title {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    margin: 0 0 var(--space-xs);
+    color: var(--text);
+}
+
+.about-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xl);
+    font-weight: 500;
+}
+
+.about-prose {
+    /* Base typography for the Pelican page content */
+    line-height: 1.75;
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+}
+
+/* Re-use existing article styles for rendered Markdown (prose) */
+.about-prose h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--border-light);
+}
+.about-prose p, .about-prose ul, .about-prose ol {
+    margin-bottom: var(--space-lg);
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 900px) {
+    .about-layout {
+        grid-template-columns: 1fr; /* Stack vertically */
+        gap: var(--space-xl);
+        padding: var(--space-lg);
+        border-radius: var(--radius-lg);
+    }
+    
+    .about-profile {
+        position: static; /* Remove sticky on mobile */
+        top: auto;
+        flex-direction: row; /* Horizontal layout for profile summary */
+        align-items: center;
+        gap: var(--space-xl);
+        padding-bottom: var(--space-xl);
+        border-bottom: 1px solid var(--border);
+        border-top: none;
+    }
+    
+    .about-avatar-container {
+        width: 100px; /* Smaller avatar on mobile */
+        height: 100px;
+        flex-shrink: 0;
+    }
+    
+    .about-actions {
+        flex-direction: column; /* Stack buttons back vertically for better tap target */
+        flex: 1; 
+        padding-top: 0;
+        border-top: none;
+    }
+    
+    .about-title {
+        font-size: 2rem;
+    }
+    
+    .about-subtitle {
+        font-size: 1rem;
+        margin-bottom: var(--space-lg);
+    }
+    
+    .page-single {
+        padding-top: var(--space-xl);
+        padding-bottom: var(--space-xl);
+    }
 }

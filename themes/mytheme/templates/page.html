@@ -1,20 +1,43 @@
-{# Static page: About, Contact using base layout #}
+{# Static page: About using base layout #}
 {% extends "base.html" %}
 
 {% block content %}
   <section class="container page-single">
-    <h1 class="page-title">{{ page.title }}</h1>
-    {%- if page.slug == 'about' or page.title|lower == 'about' -%}
-    <div class="about-header">
-      <img src="{{ SITEURL }}/images/avatar.svg" alt="{{ AUTHOR }}">
-      <div>
-        <p class="about-intro"><strong>{{ AUTHOR }}</strong> — Data Engineer & frontend enthusiast</p>
-        <p class="about-intro">I build data systems and write about engineering, tooling and projects.</p>
+    
+    {# --- Dedicated Layout for 'About' Page --- #}
+    
+    <div class="about-layout">
+      <div class="about-profile">
+        <div class="about-avatar-container">
+          <img src="{{ SITEURL }}/images/gh_pic.png" alt="{{ AUTHOR }}" class="about-avatar">
+        </div>
+        
+        <div class="about-actions">
+          
+          {# ADDED EMAIL BUTTON #}
+          <a href="mailto:your.email@example.com" class="btn btn-full w-full">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            Email Me
+          </a>
+          
+          <a href="https://github.com/" target="_blank" class="btn btn-ghost w-full">
+            GitHub
+          </a>
+          <a href="https://linkedin.com/" target="_blank" class="btn btn-ghost w-full">
+            LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <div class="about-bio">
+        <h1 class="about-title">Hi, I’m dezeat.</h1>
+        <p class="about-subtitle">Data Enthusiast & Self-Thaught Developer</p>
+        
+        <div class="about-prose">
+           {{ page.content }}
+        </div>
       </div>
     </div>
-    {%- endif -%}
-    <article class="bg-gray-100 rounded-lg p-6 shadow">
-      {{ page.content }}
-    </article>
+
   </section>
 {% endblock %}

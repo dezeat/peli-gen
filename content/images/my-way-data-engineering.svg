@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <!-- Gradient for background -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="50%" style="stop-color:#1e293b"/>
+      <stop offset="100%" style="stop-color:#0f172a"/>
+    </linearGradient>
+    
+    <!-- Warm accent gradient -->
+    <linearGradient id="warmGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f59e0b"/>
+      <stop offset="100%" style="stop-color:#ef4444"/>
+    </linearGradient>
+    
+    <!-- Cool accent gradient -->
+    <linearGradient id="coolGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#06b6d4"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+    
+    <!-- Glow filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Soft glow -->
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Noise texture -->
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feBlend in="SourceGraphic" in2="noise" mode="multiply" result="blend"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.08"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle grid pattern -->
+  <g opacity="0.03">
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#fff" stroke-width="1"/>
+    </pattern>
+    <rect width="1200" height="630" fill="url(#grid)"/>
+  </g>
+  
+  <!-- Decorative data flow lines in background -->
+  <g opacity="0.15">
+    <!-- Flowing lines representing data pipelines -->
+    <path d="M -50 200 Q 200 180 400 220 T 800 200 T 1250 180" stroke="url(#coolGrad)" stroke-width="2" fill="none"/>
+    <path d="M -50 350 Q 300 320 500 380 T 900 340 T 1250 360" stroke="url(#warmGrad)" stroke-width="2" fill="none"/>
+    <path d="M -50 480 Q 250 500 450 460 T 850 490 T 1250 470" stroke="url(#coolGrad)" stroke-width="2" fill="none"/>
+  </g>
+  
+  <!-- Floating geometric shapes - representing journey milestones -->
+  <g opacity="0.12">
+    <!-- PC/Hardware - left side -->
+    <rect x="80" y="120" width="60" height="60" rx="8" fill="none" stroke="#f59e0b" stroke-width="2" transform="rotate(-12 110 150)"/>
+    
+    <!-- Code brackets -->
+    <text x="180" y="520" font-family="monospace" font-size="48" fill="#8b5cf6" opacity="0.6">{</text>
+    <text x="1000" y="180" font-family="monospace" font-size="48" fill="#8b5cf6" opacity="0.6">}</text>
+    
+    <!-- Data nodes -->
+    <circle cx="1050" cy="450" r="25" fill="none" stroke="#06b6d4" stroke-width="2"/>
+    <circle cx="1100" cy="500" r="15" fill="none" stroke="#06b6d4" stroke-width="1.5"/>
+    <line x1="1050" y1="475" x2="1085" y2="485" stroke="#06b6d4" stroke-width="1.5"/>
+    
+    <!-- Small decorative elements -->
+    <circle cx="150" cy="400" r="4" fill="#f59e0b"/>
+    <circle cx="1080" cy="280" r="3" fill="#06b6d4"/>
+    <circle cx="950" cy="550" r="5" fill="#8b5cf6"/>
+  </g>
+  
+  <!-- Main journey path - stylized -->
+  <g filter="url(#glow)">
+    <path 
+      d="M 120 315 
+         C 200 315, 250 280, 320 280 
+         C 400 280, 420 350, 500 350 
+         C 580 350, 600 300, 680 300
+         C 760 300, 780 340, 860 340
+         C 940 340, 980 300, 1080 300" 
+      stroke="url(#coolGrad)" 
+      stroke-width="3" 
+      fill="none"
+      stroke-linecap="round"
+      opacity="0.7"
+    />
+    
+    <!-- Journey dots/milestones -->
+    <circle cx="120" cy="315" r="8" fill="#f59e0b"/>
+    <circle cx="320" cy="280" r="6" fill="#06b6d4"/>
+    <circle cx="500" cy="350" r="6" fill="#8b5cf6"/>
+    <circle cx="680" cy="300" r="6" fill="#06b6d4"/>
+    <circle cx="860" cy="340" r="6" fill="#8b5cf6"/>
+    <circle cx="1080" cy="300" r="10" fill="url(#warmGrad)" filter="url(#softGlow)"/>
+  </g>
+  
+  <!-- Main text content -->
+  <g>
+    <!-- Title -->
+    <text x="600" y="260" 
+          font-family="Georgia, 'Times New Roman', serif" 
+          font-size="52" 
+          font-weight="400"
+          fill="#f8fafc" 
+          text-anchor="middle"
+          letter-spacing="1">
+      My Way into
+    </text>
+    <text x="600" y="330" 
+          font-family="Georgia, 'Times New Roman', serif" 
+          font-size="64" 
+          font-weight="700"
+          fill="url(#warmGrad)" 
+          text-anchor="middle"
+          letter-spacing="2"
+          filter="url(#glow)">
+      Data Engineering
+    </text>
+    
+    <!-- Subtitle -->
+    <text x="600" y="400" 
+          font-family="'Courier New', monospace" 
+          font-size="18" 
+          fill="#94a3b8" 
+          text-anchor="middle"
+          letter-spacing="3">
+      FROM CURIOSITY TO CLOUD PLATFORMS
+    </text>
+  </g>
+  
+  <!-- Bottom decorative element - abstract data visualization -->
+  <g transform="translate(600, 540)" opacity="0.4">
+    <rect x="-180" y="0" width="8" height="35" rx="2" fill="#06b6d4"/>
+    <rect x="-160" y="10" width="8" height="25" rx="2" fill="#8b5cf6"/>
+    <rect x="-140" y="5" width="8" height="30" rx="2" fill="#06b6d4"/>
+    <rect x="-120" y="15" width="8" height="20" rx="2" fill="#f59e0b"/>
+    <rect x="-100" y="0" width="8" height="35" rx="2" fill="#8b5cf6"/>
+    <rect x="-80" y="8" width="8" height="27" rx="2" fill="#06b6d4"/>
+    <rect x="-60" y="12" width="8" height="23" rx="2" fill="#f59e0b"/>
+    <rect x="-40" y="3" width="8" height="32" rx="2" fill="#8b5cf6"/>
+    <rect x="-20" y="18" width="8" height="17" rx="2" fill="#06b6d4"/>
+    <rect x="0" y="6" width="8" height="29" rx="2" fill="#f59e0b"/>
+    <rect x="20" y="10" width="8" height="25" rx="2" fill="#8b5cf6"/>
+    <rect x="40" y="0" width="8" height="35" rx="2" fill="#06b6d4"/>
+    <rect x="60" y="14" width="8" height="21" rx="2" fill="#f59e0b"/>
+    <rect x="80" y="5" width="8" height="30" rx="2" fill="#8b5cf6"/>
+    <rect x="100" y="9" width="8" height="26" rx="2" fill="#06b6d4"/>
+    <rect x="120" y="2" width="8" height="33" rx="2" fill="#f59e0b"/>
+    <rect x="140" y="11" width="8" height="24" rx="2" fill="#8b5cf6"/>
+    <rect x="160" y="7" width="8" height="28" rx="2" fill="#06b6d4"/>
+    <rect x="180" y="16" width="8" height="19" rx="2" fill="#f59e0b"/>
+  </g>
+  
+  <!-- Noise overlay for texture -->
+  <rect width="1200" height="630" fill="white" filter="url(#noise)" opacity="0.4"/>
+</svg>
