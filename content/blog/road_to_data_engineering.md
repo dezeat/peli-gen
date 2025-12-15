@@ -19,8 +19,8 @@ Between twelve and eighteen, I spent a huge amount of time at the computer: gami
 
 ## First technical foundations
 
-Before moving into the social sciences, I briefly studied Cognitive Science in Osnabrück.  
-There, I took **Computer Science I & II**, covering algorithms, data structures, and object-oriented programming in Java. Even though I didn't continue the program, these were the first structured programming concepts I ever learned — and they stayed with me.
+Before moving into the social sciences, I briefly studied Cognitive Science.  
+There, I took Computer Science I & II, covering algorithms, data structures, and object-oriented programming in Java. Even though I didn't continue the program, these were the first structured programming concepts I ever learned — and they stayed with me.
 
 ## Academic path: quantitative, not purely technical
 
@@ -36,19 +36,17 @@ I worked in a data-heavy marketing environment: dashboards, SQL, automation, R s
 
 After university, I stepped into my first full-time role as a junior data developer.  
 There I worked with SQL, Python, Airflow, cloud tooling, and version control — effectively learning the foundations of building and maintaining data pipelines. I spent a lot of time learning after work: reading, experimenting, taking cloud certifications, and building up software-engineering habits.  
-This period was the transition from "I like data and programming" to "I want to build data systems."
 
 ## Today: working on a cloud-based data platform
 
 Now I work as a Data Engineer in the energy sector, in a team that builds and operates a cloud-based data platform using Azure, Databricks, Python, and PySpark.
 
-My day-to-day work is fairly end-to-end: gathering requirements, writing data models, embedding them into our internal framework, deploying, orchestrating, and maintaining pipelines. I'm one of two data engineers on the team, and I co-maintain our PySpark-based data engineering framework — a codebase originally built by two very experienced engineers.
+My day-to-day work is fairly end-to-end: gathering requirements, writing data models, embedding them into our internal framework, deploying, orchestrating, and maintaining pipelines. I'm one of two data engineers on the team, and I co-maintain and develop our PySpark-based data engineering framework.
 
 I've been in this role since summer 2024, and while I can handle most tasks on my own by now, I'm still learning a lot — especially when it comes to architecture decisions and deeper system design. It's a good environment to grow in: I'm surrounded by experienced engineers, and this is also where I really got hands-on with software engineering best practices — a solid test suite, CI/CD automation, and a well-structured, modular codebase. There's always something to pick up, and I'm steadily getting more confident in the work.
 
 ## Why this blog
 
-I learn best by writing things down.  
 This blog is a place to:
 
 - collect notes about what I'm experimenting with
@@ -56,6 +54,4 @@ This blog is a place to:
 - reflect on patterns in data engineering
 - write about tools, design ideas, and things I want to understand more deeply
 
-I also just enjoy writing — structuring my thoughts, putting them into words, and making sense of what I'm learning along the way. Maybe that's partly because I didn't come from a traditional CS background: writing has always been part of how I learn and process things. Not everyone in tech is into that, but I find it helpful and satisfying.
-
-No grand mission — just a steady record of learning and building.
+I also just enjoy writing — structuring my thoughts, putting them into words, and making sense of what I'm learning along the way. Maybe that's partly because I didn't come from a traditional CS background: writing has always been part of how I learn and process things.
