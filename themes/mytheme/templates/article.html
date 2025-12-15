@@ -17,9 +17,9 @@
         </header>
 
         {# NEW: Only shows if you define 'Cover: ...' in markdown #}
-        {% if article.metadata.get('cover') %}
+        {% if article.metadata.get('main') %}
         <figure class="article-cover">
-            <img src="{{ SITEURL }}/{{ article.metadata.get('cover') }}" alt="{{ article.title }}">
+            <img src="{{ SITEURL }}/{{ article.metadata.get('main') }}" alt="{{ article.title }}">
         </figure>
         {% endif %}
 

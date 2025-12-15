@@ -14,9 +14,9 @@
       <div style="display:flex; align-items:flex-start; gap:1rem; width:100%;">
         
         {# CHANGE 1: Clickable Image #}
-        {% if article.metadata.get('image') %}
+        {% if article.metadata.get('thumbnail') %}
         <a href="{{ SITEURL }}{{ article.url }}" style="flex-shrink: 0; display: block;">
-            <img class="thumb" src="{{ SITEURL }}/{{ article.metadata.get('image') }}" alt="{{ article.title }}">
+          <img class="thumb" src="{{ SITEURL }}/{{ article.metadata.get('thumbnail') }}" alt="{{ article.title }}">
         </a>
         {% endif %}
 

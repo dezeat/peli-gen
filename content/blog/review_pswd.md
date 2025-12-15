@@ -4,8 +4,8 @@ Type: article
 Category: Book Reviews
 Tags: Software Design, Complexity, Clean Code, Book Review
 Summary: A review of the German edition of John Ousterhout's classic. I explore the concept of "deep modules" versus "clean code" and how managing complexity is the true goal of software design.
-Image: images/blog/book_review_tb.jpg
-Cover: images/blog/pswd_tb_main.png
+Thumbnail: images/blog/book_review_tb.jpg
+Main: images/blog/pswd_main.png
 
 
 As a Data Engineer with a non-traditional background, I try to regularly deepen my understanding of software development fundamentals through practical books. I recently read the German O’Reilly edition of John Ousterhout’s *A Philosophy of Software Design* (titled *Prinzipien des Software-Designs*), and I found the book's structured, almost "textbook" style—packed with concrete examples—extremely helpful for understanding and internalizing these concepts.

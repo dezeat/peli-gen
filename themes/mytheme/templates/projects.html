@@ -6,15 +6,14 @@
     {# 1. Create a clean list of just projects #}
     {% set projects = articles | selectattr('metadata.type', 'equalto', 'project') | list %}
 
-    {# 2. The Hero Card (Uses the first item: projects[0]) #}
+    {# 2. The Hero Card #}
     {% if projects %}
         {% set hero = projects[0] %}
         <div class="projects-featured-hero">
             <a href="{{ SITEURL }}{{ hero.url }}" class="project-hero-card">
                 <div class="hero-card-media">
-                    {% if hero.metadata.get('image') %}
-                    {# Added SITEURL to ensure image path is correct #}
-                    <img src="{{ SITEURL }}/{{ hero.metadata.get('image') }}" alt="{{ hero.title }} hero image">
+                    {% if hero.metadata.get('thumbnail') %}
+                    <img src="{{ SITEURL }}/{{ hero.metadata.get('thumbnail') }}" alt="{{ hero.title }} hero image">
                     {% endif %}
                 </div>
                 <div class="hero-card-content">
@@ -27,26 +26,33 @@
         </div>
     {% endif %}
 
-    {# 3. The Grid (Loops through the REST: projects[1:]) #}
+    {# 3. The Grid #}
     <div class="projects-grid">
         {% for project in projects[1:] %}
-            <a href="{{ SITEURL }}{{ project.url }}" class="project-card">
+            <article class="card" style="width: 100%; max-width: none; margin: 0; display: flex; flex-direction: column;">
                 
-                {% if project.metadata.get('image') %}
-                <div class="project-media">
-                    {# Added SITEURL here as well #}
-                    <img src="{{ SITEURL }}/{{ project.metadata.get('image') }}" alt="{{ project.title }}">
-                </div>
+                {% if project.metadata.get('thumbnail') %}
+                <a href="{{ SITEURL }}{{ project.url }}" style="display: block;">
+                    <img src="{{ SITEURL }}/{{ project.metadata.get('thumbnail') }}" alt="{{ project.title }}" class="card-thumb" style="width: 100%; object-fit: cover;">
+                </a>
                 {% else %}
-                <div class="project-placeholder">No Image</div>
+                <a href="{{ SITEURL }}{{ project.url }}" style="display: block; background-color: #f0f0f0; height: 180px; display: flex; align-items: center; justify-content: center; color: #888;">
+                   No Preview
+                </a>
                 {% endif %}
                 
-                <div class="project-content">
-                    <h3>{{ project.title }}</h3>
-                    <p>{{ project.summary }}</p>
-                    <span class="read-more">View Project →</span>
+                <div class="card-content" style="flex-grow: 1;">
+                    <h3><a href="{{ SITEURL }}{{ project.url }}">{{ project.title }}</a></h3>
+                    
+                    {# --- THE FIX IS HERE --- #}
+                    {# Changed '%Y' to '%a %d %b %Y' to show 'Thu 11 Dec 2025' #}
+                    <p class="muted">
+                        {{ project.date.strftime('%a %d %b %Y') }} 
+                    </p>
+                    
+                    <p class="summary">{{ project.summary|truncate(100, True, '...') }}</p>
                 </div>
-            </a>
+            </article>
         {% endfor %}
     </div>
 </section>

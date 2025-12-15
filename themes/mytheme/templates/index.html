@@ -51,9 +51,9 @@
           {% if article.metadata.get('type', 'blog')|lower != 'project' and shown_posts < 5 %}
           
             <article class="card carousel-item">
-              {% if article.metadata is defined and article.metadata.get('image') %}
+              {% if article.metadata is defined and article.metadata.get('thumbnail') %}
               <a href="{{ SITEURL }}{{ article.url }}" style="display: block;">
-                <img src="{{ article.metadata.get('image') }}" alt="{{ article.title }}" class="card-thumb">
+                <img src="{{ article.metadata.get('thumbnail') }}" alt="{{ article.title }}" class="card-thumb">
               </a>
               {% endif %}
               
@@ -103,10 +103,10 @@
           {% if a.metadata is defined and a.metadata.get('type','')|lower == 'project' and shown_projects < 5 %}
         
             <article class="card carousel-item">
-              {% if a.metadata.get('image') %}
-              <a href="{{ SITEURL }}{{ a.url }}" style="display: block;">
-                 <img src="{{ a.metadata.get('image') }}" alt="{{ a.title }}" class="card-thumb">
-              </a>
+                {% if a.metadata.get('thumbnail') %}
+                <a href="{{ SITEURL }}{{ a.url }}" style="display: block;">
+                  <img src="{{ a.metadata.get('thumbnail') }}" alt="{{ a.title }}" class="card-thumb">
+                </a>
               {% endif %}
               
               <div class="card-content">

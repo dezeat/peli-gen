@@ -4,8 +4,8 @@ Type: project
 Category: Data Engineering
 Tags: Python, Apache Kafka, Flask, Prometheus
 Summary: A lightweight, open-source monitoring dashboard designed to track latency and throughput across various stages of an ETL/ELT pipeline. It provides real-time alerts and historical performance metrics.
-Image: images/blog/default_tb.png
-Cover: images/blog/default_main_tb.png
+Thumbnail: images/blog/default_tb.png
+Main: images/blog/default_main.png
 
 # Real-Time Data Pipeline Monitor
 
