@@ -11,13 +11,23 @@
              data-search="{{ article.title|lower }} {{ article.summary|lower }} {{ article.category|lower if article.category else '' }}">
              
       <div style="display:flex; align-items:flex-start; gap:1rem; width:100%;">
+        
+        {# CHANGE 1: Clickable Image #}
         {% if article.metadata.get('image') %}
-        <img class="thumb" src="{{ SITEURL }}/{{ article.metadata.get('image') }}" alt="{{ article.title }}">
+        <a href="{{ SITEURL }}{{ article.url }}" style="flex-shrink: 0; display: block;">
+            <img class="thumb" src="{{ SITEURL }}/{{ article.metadata.get('image') }}" alt="{{ article.title }}">
+        </a>
         {% endif %}
+
         <div style="flex:1; min-width:0;">
           <header class="post-head">
             <h2 class="post-title"><a href="{{ SITEURL }}{{ article.url }}">{{ article.title }}</a></h2>
-            <div class="meta">{{ article.date.strftime('%Y-%m-%d') }} • {{ article.author }}</div>
+            
+            {# CHANGE 2 & 3: Date Format and Separator #}
+            <div class="meta">
+                {{ article.date.strftime('%a %d %b %Y') }} — {{ article.category }}
+            </div>
+
           </header>
           <div class="post-summary">{{ article.summary }}</div>
           <p class="read-more"><a href="{{ SITEURL }}{{ article.url }}">Read →</a></p>

@@ -8,16 +8,13 @@
         <img src="/images/hero-graphic.jpg" alt="hero graphic" class="hero-graphic">
         
         <div class="hero-content">
-          
           <h1 class="hero-title">
             Building, Breaking,<br>
             and Learning.
           </h1>
-          
           <p class="hero-sub">
             From social science to data engineering. I started this blog to keep track of my progress. A journal for technical notes, career growth, and reflecting on how to build better software systems.
           </p>
-          
           <p class="hero-cta">
             <a class="btn" href="{{ SITEURL }}/blog.html">Read the blog</a>
             <a class="btn btn-ghost" href="{{ SITEURL }}/projects.html">See projects</a>
@@ -27,6 +24,7 @@
     </div>
   </section>
 
+  {# --- RECENT POSTS SECTION (Strictly Blog Posts) --- #}
   <section class="container recent-section">
     <div class="section-header">
       <h2>Recent posts</h2>
@@ -45,24 +43,40 @@
     </div>
     <div class="carousel-wrapper">
       <div class="carousel" id="posts-carousel" tabindex="0">
-        {% for article in articles[:5] %}
-        <article class="card carousel-item">
-          {% if article.metadata is defined and article.metadata.get('image') %}
-          <img src="{{ article.metadata.get('image') }}" alt="{{ article.title }}" class="card-thumb">
+        
+        {# COUNTER LOGIC: Show max 5 items that are NOT projects #}
+        {% set shown_posts = 0 %}
+        {% for article in articles %}
+          {# Check if type is NOT project #}
+          {% if article.metadata.get('type', 'blog')|lower != 'project' and shown_posts < 5 %}
+          
+            <article class="card carousel-item">
+              {% if article.metadata is defined and article.metadata.get('image') %}
+              <a href="{{ SITEURL }}{{ article.url }}" style="display: block;">
+                <img src="{{ article.metadata.get('image') }}" alt="{{ article.title }}" class="card-thumb">
+              </a>
+              {% endif %}
+              
+              <div class="card-content">
+                <h3><a href="{{ SITEURL }}{{ article.url }}">{{ article.title }}</a></h3>
+                <p class="muted">
+                    {{ article.date.strftime('%a %d %b %Y') }} — {{ article.category }}
+                </p>
+                <p class="summary">{{ article.summary|truncate(100, True, '...') }}</p>
+              </div>
+            </article>
+            
+            {% set shown_posts = shown_posts + 1 %}
           {% endif %}
-          <div class="card-content">
-            <h3><a href="{{ SITEURL }}{{ article.url }}">{{ article.title }}</a></h3>
-            <p class="muted">{{ article.date.strftime('%Y-%m-%d') }} • {{ article.author }}</p>
-            <p class="summary">{{ article.summary|truncate(100, True, '...') }}</p>
-          </div>
-        </article>
         {% endfor %}
+        
       </div>
       <div class="carousel-fade carousel-fade-left"></div>
       <div class="carousel-fade carousel-fade-right"></div>
     </div>
   </section>
 
+  {# --- FEATURED PROJECTS SECTION (Strictly Projects) --- #}
   <section class="container projects-preview">
     <div class="section-header">
       <h2>Featured projects</h2>
@@ -81,22 +95,33 @@
     </div>
     <div class="carousel-wrapper">
       <div class="carousel" id="projects-carousel" tabindex="0">
-        {% set shown = 0 %}
+        
+        {# COUNTER LOGIC: Show max 5 items that ARE projects #}
+        {% set shown_projects = 0 %}
         {% for a in articles %}
-          {% if a.metadata is defined and a.metadata.get('type','')|lower == 'project' and shown < 5 %}
-        <article class="card carousel-item">
-          {% if a.metadata.get('image') %}
-          <img src="{{ a.metadata.get('image') }}" alt="{{ a.title }}" class="card-thumb">
-          {% endif %}
-          <div class="card-content">
-            <h3><a href="{{ SITEURL }}{{ a.url }}">{{ a.title }}</a></h3>
-            <p class="muted">Project</p>
-            <p class="summary">{{ a.summary|truncate(100, True, '...') }}</p>
-          </div>
-        </article>
-            {% set shown = shown + 1 %}
+          {# Check if type IS project #}
+          {% if a.metadata is defined and a.metadata.get('type','')|lower == 'project' and shown_projects < 5 %}
+        
+            <article class="card carousel-item">
+              {% if a.metadata.get('image') %}
+              <a href="{{ SITEURL }}{{ a.url }}" style="display: block;">
+                 <img src="{{ a.metadata.get('image') }}" alt="{{ a.title }}" class="card-thumb">
+              </a>
+              {% endif %}
+              
+              <div class="card-content">
+                <h3><a href="{{ SITEURL }}{{ a.url }}">{{ a.title }}</a></h3>
+                <p class="muted">
+                    {{ a.date.strftime('%a %d %b %Y') }} — Projects
+                </p>
+                <p class="summary">{{ a.summary|truncate(100, True, '...') }}</p>
+              </div>
+            </article>
+        
+            {% set shown_projects = shown_projects + 1 %}
           {% endif %}
         {% endfor %}
+        
       </div>
       <div class="carousel-fade carousel-fade-left"></div>
       <div class="carousel-fade carousel-fade-right"></div>
