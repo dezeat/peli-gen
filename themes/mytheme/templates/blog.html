@@ -4,12 +4,17 @@
 <div class="blog-page">
   <div class="feed">
     {% for article in articles %}
-    <article class="post-card" data-search="{{ article.title|lower }} {{ article.summary|lower }} {{ article.category|lower if article.category else '' }} {{ article.author|lower }}">
-      <div style="display:flex; align-items:flex-start; gap:1rem">
+    {# Data attributes carry the logic for search.js #}
+    <article class="post-card" 
+             data-tags="{% for t in article.tags %}{{ t|lower }},{% endfor %}"
+             data-category="{{ article.category|lower if article.category else '' }}"
+             data-search="{{ article.title|lower }} {{ article.summary|lower }} {{ article.category|lower if article.category else '' }}">
+             
+      <div style="display:flex; align-items:flex-start; gap:1rem; width:100%;">
         {% if article.metadata.get('image') %}
         <img class="thumb" src="{{ SITEURL }}/{{ article.metadata.get('image') }}" alt="{{ article.title }}">
         {% endif %}
-        <div>
+        <div style="flex:1; min-width:0;">
           <header class="post-head">
             <h2 class="post-title"><a href="{{ SITEURL }}{{ article.url }}">{{ article.title }}</a></h2>
             <div class="meta">{{ article.date.strftime('%Y-%m-%d') }} • {{ article.author }}</div>
@@ -22,7 +27,8 @@
     {% endfor %}
     
     <div class="no-results" style="display: none;">
-      <p>No posts found matching your search.</p>
+      <p>No posts found matching your criteria.</p>
+      <button class="btn btn-ghost" style="margin-top:1rem">Show all posts</button>
     </div>
   </div>
   
@@ -41,22 +47,43 @@
       <div class="widget">
         <h3>Categories</h3>
         <ul class="categories-list">
-          {% set seen = [] %}
+          {# "All" Button #}
+          <li><button type="button" class="cat-badge category-filter active" data-filter="all">All</button></li>
+          
+          {% set seen_cats = [] %}
           {% for a in articles %}
-            {% if a.category and a.category not in seen %}
-              {% set _ = seen.append(a.category) %}
+            {% if a.category and a.category not in seen_cats %}
+              {% set _ = seen_cats.append(a.category) %}
+              <li>
+                <button type="button" class="cat-badge category-filter" data-filter="{{ a.category|lower }}">{{ a.category }}</button>
+              </li>
             {% endif %}
-          {% endfor %}
-          {% for c in seen %}
-          <li>
-            <button type="button" class="cat-badge category-filter" data-category="{{ c|lower }}">{{ c }}</button>
-          </li>
           {% endfor %}
         </ul>
       </div>
+
+      <div class="widget">
+        <h3>Tags</h3>
+        <ul class="categories-list">
+          {% set seen_tags = [] %}
+          {% for a in articles %}
+            {% for t in a.tags %}
+              {% if t not in seen_tags %}
+                {% set _ = seen_tags.append(t) %}
+                <li>
+                  {# Using tag-filter class for JS selector #}
+                  <button type="button" class="cat-badge tag-filter" data-tag="{{ t|lower }}">{{ t }}</button>
+                </li>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </ul>
+      </div>
+
     </div>
   </aside>
 </div>
 
+{# Link the modular JS file #}
 <script src="{{ SITEURL }}/theme/js/search.js"></script>
 {% endblock %}

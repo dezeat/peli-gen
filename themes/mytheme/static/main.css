@@ -1007,13 +1007,51 @@ body {
   border-top: 1px solid var(--border);
 }
 
-.tag-list strong {
-  font-weight: 600;
-  color: var(--text);
+/* ---------- Improved Article Tags (Bottom) ---------- */
+
+/* The container: uses flexbox to handle wrapping automatically */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem; /* Adds consistent space between the label and the tags */
+  margin-top: 0; 
 }
 
+/* The label "TAGS:" */
+.tag-list strong {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted); /* Makes it subtle so the tags stand out */
+  margin-right: 0.25rem;
+}
+
+/* The individual tag buttons */
 .tag-badge {
-  margin-right: 0.5rem;
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill); /* Uses your existing 100px radius variable */
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  
+  /* We remove the old margin-right because 'gap' in .tag-list handles spacing now */
+  margin-right: 0; 
+}
+
+/* Hover effect */
+.tag-badge:hover {
+  color: var(--accent);
+  border-color: var(--accent-light);
+  background-color: var(--accent-softer);
+  transform: translateY(-1px); /* A subtle lift effect */
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.1);
 }
 
 /* ---------- Article Cover Image ---------- */
