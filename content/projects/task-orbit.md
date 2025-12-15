@@ -1,7 +1,8 @@
 Title: Task Orbit
 Date: 2025-12-09
 Type: project
-Image: images/task-orbit.svg
+Image: images/blog/default_tb.png
+Cover: images/blog/default_main_tb.png
 Category: Projects
 Tags: productivity, tool
 Summary: Task Orbit is a productivity tool for managing tasks in orbit.
