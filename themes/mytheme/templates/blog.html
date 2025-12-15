@@ -63,27 +63,32 @@
       </div>
 
       <div class="widget">
-        <h3>Tags</h3>
-        <ul class="categories-list">
-          {% set seen_tags = [] %}
-          {% for a in articles %}
-            {% for t in a.tags %}
-              {% if t not in seen_tags %}
-                {% set _ = seen_tags.append(t) %}
-                <li>
-                  {# Using tag-filter class for JS selector #}
-                  <button type="button" class="cat-badge tag-filter" data-tag="{{ t|lower }}">{{ t }}</button>
-                </li>
-              {% endif %}
+        <h3>Popular Tags</h3>
+        <ul class="categories-list" id="tags-list">
+          {% if tags %}
+            {# Use Pelican's global 'tags' variable: list of (tag, articles) tuples #}
+            {% for tag, articles in tags %}
+              {# We add data-count so JS can sort them #}
+              <li class="tag-item" data-count="{{ articles|count }}" data-tag="{{ tag.name|lower }}">
+                <button type="button" class="cat-badge tag-filter" data-tag="{{ tag.name|lower }}">
+                  {{ tag.name }} 
+                  <span style="opacity: 0.6; font-size: 0.8em; margin-left: 4px;">({{ articles|count }})</span>
+                </button>
+              </li>
             {% endfor %}
-          {% endfor %}
+          {% else %}
+             <li>No tags found.</li>
+          {% endif %}
         </ul>
+        
+        <button id="show-more-tags" class="btn-text" style="display:none; margin-top: 10px; font-size: 0.85rem; color: var(--accent); cursor: pointer; background: none; border: none; padding: 0;">
+            Show more...
+        </button>
       </div>
-
-    </div>
+      </div>
   </aside>
 </div>
 
-{# Link the modular JS file #}
+{# Link the modular JS files #}
 <script src="{{ SITEURL }}/theme/js/search.js"></script>
-{% endblock %}
+<script src="{{ SITEURL }}/theme/js/tags.js"></script> {% endblock %}

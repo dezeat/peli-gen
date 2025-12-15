@@ -1,54 +1,53 @@
-{# Projects page layout: features the most recent project in a large hero banner, and lists the rest in a grid. #}
 {% extends "base.html" %}
 
 {% block content %}
 <section class="container projects-page-section">
 
-    {% set featured_project_shown = false %}
+    {# 1. Create a clean list of just projects #}
+    {% set projects = articles | selectattr('metadata.type', 'equalto', 'project') | list %}
 
-    <div class="projects-featured-hero">
-    {% for a in articles | selectattr('metadata.type', 'equalto', 'project') | list if not featured_project_shown %}
-        {% if loop.first %}
-        <a href="{{ SITEURL }}{{ a.url }}" class="project-hero-card">
-            <div class="hero-card-media">
-                {% if a.metadata.get('image') %}
-                <img src="{{ a.metadata.get('image') }}" alt="{{ a.title }} hero image">
-                {% endif %}
-            </div>
-            <div class="hero-card-content">
-                <span class="tag">Featured Project</span>
-                <h2>{{ a.title }}</h2>
-                <p>{{ a.summary|striptags|truncate(200) }}</p>
-                <span class="btn">View Project Details →</span>
-            </div>
-        </a>
-        {% set featured_project_shown = true %}
-        {% endif %}
-    {% endfor %}
-    </div>
+    {# 2. The Hero Card (Uses the first item: projects[0]) #}
+    {% if projects %}
+        {% set hero = projects[0] %}
+        <div class="projects-featured-hero">
+            <a href="{{ SITEURL }}{{ hero.url }}" class="project-hero-card">
+                <div class="hero-card-media">
+                    {% if hero.metadata.get('image') %}
+                    {# Added SITEURL to ensure image path is correct #}
+                    <img src="{{ SITEURL }}/{{ hero.metadata.get('image') }}" alt="{{ hero.title }} hero image">
+                    {% endif %}
+                </div>
+                <div class="hero-card-content">
+                    <span class="tag">Featured Project</span>
+                    <h2>{{ hero.title }}</h2>
+                    <p>{{ hero.summary|striptags|truncate(200) }}</p>
+                    <span class="btn">View Project Details →</span>
+                </div>
+            </a>
+        </div>
+    {% endif %}
 
+    {# 3. The Grid (Loops through the REST: projects[1:]) #}
     <div class="projects-grid">
-        {% for a in articles | selectattr('metadata.type', 'equalto', 'project') | list %}
-            {% if loop.index0 > 0 %}
-            
-            <a href="{{ SITEURL }}{{ a.url }}" class="project-card">
+        {% for project in projects[1:] %}
+            <a href="{{ SITEURL }}{{ project.url }}" class="project-card">
                 
-                {% if a.metadata.get('image') %}
+                {% if project.metadata.get('image') %}
                 <div class="project-media">
-                    <img src="{{ a.metadata.get('image') }}" alt="{{ a.title }}">
+                    {# Added SITEURL here as well #}
+                    <img src="{{ SITEURL }}/{{ project.metadata.get('image') }}" alt="{{ project.title }}">
                 </div>
                 {% else %}
                 <div class="project-placeholder">No Image</div>
                 {% endif %}
+                
                 <div class="project-content">
-                    <h3>{{ a.title }}</h3>
-                    <p>{{ a.summary }}</p>
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.summary }}</p>
                     <span class="read-more">View Project →</span>
                 </div>
             </a>
-
-            {% endif %}
         {% endfor %}
     </div>
 </section>
-{% endblock %}  
+{% endblock %}

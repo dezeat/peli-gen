@@ -102,4 +102,17 @@ Image: images/blogs/my-entry/header.jpg
 
     - contact page
     - iamges in blog posts (header)
-    - 
+
+
+todo:
+- cut off tags at ~10 and implement a show more
+- make the thumbnails clcikable
+- make the large proejct thumbnail look better
+
+-> write another draft for task orbit
+-> do the gh pages automation
+  -> on 
+
+
+pelican project:
+what needs to be done: modularize css. professionalize repo with pre-commit-hooks, add tests

@@ -1,7 +1,7 @@
-Title: Book Review — A Philosophy of Software Design (John Ousterhout)
+Title: A Philosophy of Software Design (John Ousterhout)
 Date: 2025-12-11 21:00
 Type: article
-Category: Book Reviews
+Category: "Book Reviews"
 Tags: Software Design, Complexity, Clean Code, Book Review
 Summary: A review of the German edition of John Ousterhout's classic. I explore the concept of "deep modules" versus "clean code" and how managing complexity is the true goal of software design.
 Image: images/book_review.jpg
@@ -72,6 +72,5 @@ Ultimately, Ousterhout argues that the central skill in design is distinguishing
 
 ## Conclusion
 
-I found *A Philosophy of Software Design* to be very valuable. I highly recommend it to anyone who wants to understand the root causes of software complexity and learn tangible design methods to reduce it. It provides a mature, "engineering-first" perspective that balances out the dogmatic rules often found in the industry.
+I found *A Philosophy of Software Design* to be very valuable. I recommend it to anyone who wants to understand the root causes of software complexity and learn tangible design methods to reduce it. It provides a pragmatic, "engineering-first" perspective that balances out the dogmatic rules often found in the industry.
 
-what needs to be done: modularize css. professionalize repo with pre-commit-hooks, add tests
