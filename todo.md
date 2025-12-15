@@ -95,3 +95,11 @@ Image: images/blogs/my-entry/header.jpg
   - [ ] Cache dependencies for faster builds
   - [ ] Test build locally with `pelican content` before push
 
+
+
+
+- akut:
+
+    - contact page
+    - iamges in blog posts (header)
+    - 

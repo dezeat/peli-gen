@@ -173,18 +173,19 @@ body {
   background: var(--accent-softer);
 }
 
-/* ---------- Hero Section ---------- */
+/* ---------- Hero Section (Updated Width) ---------- */
 .home-hero {
   background: transparent;
-  padding: var(--space-2xl) 0 var(--space-xl);
+  padding: var(--space-2xl) 0 var(--space-2xl); /* Increased padding */
   position: relative;
 }
 
 .hero-media {
   position: relative;
-  max-width: 900px;
+  max-width: 1100px; /* Widened to match content grid */
   margin: 0 auto;
-  aspect-ratio: 16 / 9; 
+  aspect-ratio: 21 / 9; /* Slightly wider aspect ratio */
+  width: 100%;
 }
 
 .hero-graphic {
@@ -826,12 +827,39 @@ body {
   color: var(--accent);
 }
 
+/* ---------- Contact Section (New) ---------- */
+.contact-section {
+  background: var(--bg-blue-tint);
+  padding: var(--space-2xl) 0;
+  text-align: center;
+  border-top: 1px solid var(--border-accent);
+  margin-top: var(--space-xl);
+}
+
+.contact-inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-section h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: var(--space-sm);
+}
+
+.contact-description {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
+  line-height: 1.6;
+}
+
 /* ---------- Footer ---------- */
 .site-footer {
   text-align: center;
   padding: var(--space-lg) 0 var(--space-xl);
   border-top: 1px solid var(--border);
-  margin-top: var(--space-2xl);
   background: var(--surface);
 }
 
@@ -986,6 +1014,31 @@ body {
 
 .tag-badge {
   margin-right: 0.5rem;
+}
+
+/* ---------- Article Cover Image ---------- */
+.article-cover {
+    margin: 0 0 var(--space-xl) 0; /* Space between image and text */
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-md);
+}
+
+.article-cover img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 550px; /* Prevents vertical images from taking up too much scroll space */
+    object-fit: cover; /* Ensures the image fills the area nicely */
+}
+
+/* Mobile adjustment */
+@media (max-width: 800px) {
+    .article-cover img {
+        max-height: 350px;
+    }
 }
 
 /* ---------- About Page ---------- */
@@ -1280,8 +1333,6 @@ body {
 }
 
 /* ---------- Search Styles ---------- */
-/* Add these to your main.css */
-
 .search-box {
   position: relative;
   margin: 0;
