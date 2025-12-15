@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (!list || !btn) return;
 
     const items = Array.from(list.getElementsByClassName('tag-item'));
-    const INITIAL_COUNT = 10;
+    const INITIAL_COUNT = 5;
     let visibleCount = INITIAL_COUNT;
 
     // 1. SORT: Sort items by data-count (Descending)

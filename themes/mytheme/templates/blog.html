@@ -8,7 +8,8 @@
     <article class="post-card" 
              data-tags="{% for t in article.tags %}{{ t|lower }},{% endfor %}"
              data-category="{{ article.category|lower if article.category else '' }}"
-             data-search="{{ article.title|lower }} {{ article.summary|lower }} {{ article.category|lower if article.category else '' }}">
+             {# We add |striptags to remove HTML and |replace('"', '') to remove quotes #}
+             data-search="{{ article.title|striptags|lower|replace('"', '') }} {{ article.summary|striptags|lower|replace('"', '') }} {{ article.category|lower if article.category else '' }}">
              
       <div style="display:flex; align-items:flex-start; gap:1rem; width:100%;">
         

@@ -1,6 +1,7 @@
 Title: About
-Date: 2025-10-16
 Slug: about
+Template: about
+Status: published
 
 I have been working in the industry since 2022, currently focusing on cloud-based data platforms using Azure, Databricks, Python, and PySpark. My day-to-day involves building end-to-end pipelines—from requirements to deployment—and co-maintaining an internal data engineering framework with my team.
 
