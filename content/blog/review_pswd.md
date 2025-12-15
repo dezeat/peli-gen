@@ -73,3 +73,5 @@ Ultimately, Ousterhout argues that the central skill in design is distinguishing
 ## Conclusion
 
 I found *A Philosophy of Software Design* to be very valuable. I highly recommend it to anyone who wants to understand the root causes of software complexity and learn tangible design methods to reduce it. It provides a mature, "engineering-first" perspective that balances out the dogmatic rules often found in the industry.
+
+what needs to be done: modularize css. professionalize repo with pre-commit-hooks, add tests
