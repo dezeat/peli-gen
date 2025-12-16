@@ -3,116 +3,66 @@
 ## 1. CSS / Styling
 
 ### 1.1 Modularization
-- [ ] Extract all inline/embedded CSS into separate `.css` files
-- [ ] Split into modules:
-  - [ ] `base.css` → resets, typography
-  - [ ] `layout.css` → header, footer, grid system
-  - [ ] `components.css` → article cards, buttons, carousel
-  - [ ] `blog.css` → blog-specific styles
-- [ ] Integrate CSS files into the Pelican theme properly
+- [ ] Modularize CSS (split into `base.css`, `layout.css`, `components.css`, `blog.css`)
+- [ ] Integrate modular CSS into the theme and verify styling across pages
 
-### 1.2 Article Card Layout
-- [ ] Adjust spacing between title and text in article cards
-- [ ] Ensure consistent spacing across all cards
-- [ ] Remove awkward gaps
-- [ ] Allow dynamic height based on content
+### 1.2 UI polish
+- [x] Improve article card layout and spacing
+- [x] Add support for large header images per post
 
-### 1.3 Large Images for Each Blog Entry
-- [ ] Support at least one large header image per blog post
-- [ ] Optional: support multiple images or gallery per post
-- [ ] Ensure responsive scaling in templates
+## 2. JavaScript / Interaction
 
----
+- [x] Refactor JavaScript into separate files (`carousel.js`, `search.js`, `utils.js`)
+- [x] Improve carousel behavior (smooth scroll, touch support)
+- [x] Implement client-side live search (debounced)
 
-## 2. Pelican Content / HTML Structure
+## 3. Content & Templates
 
-### 2.1 Context Section on Main Page
-- [ ] Add a "Context / About this Blog" section at the bottom of `index.html`
-- [ ] Use a dedicated template block or partial include
-- [ ] Style appropriately (expand/collapse optional)
+- [x] Provide a post template and front-matter guidelines
+- [x] Add 'Context / About this Blog' section to the index template
+- [x] Add social links to header/footer in theme templates
+- [x] Organize `content/images/` and add thumbnail support
 
-### 2.2 Social Links
-- [ ] Add social links in header/footer via theme templates
-- [ ] Ensure links open in new tabs
-- [ ] Optional: use SVG icons or Font Awesome
+## 4. CI / Deployment
 
-### 2.3 Metadata for Blog Entries
-- [ ] Ensure each Markdown/reStructuredText file has proper front-matter:
-```
-Title: My Blog Entry
-Date: 2025-12-12
-Author: David Zimmermann
-Tags: Data, Engineering
-Image: images/blogs/my-entry/header.jpg
-```
-- [ ] Verify image paths match Pelican `STATIC_PATHS`
+### 4.1 GitHub Actions
+- [ ] Add a CI workflow to build the Pelican site
+- [ ] Add a publish workflow to deploy output to `gh-pages` on push to `main`
+- [ ] Add a smoke test step that runs `pelican content` to validate builds
+
+## 5. Repository Hygiene
+
+- [ ] Create `CONTRIBUTING.md` and a post template
+- [ ] Add pre-commit hooks and minimal tests
+- [ ] Review and clean up repository structure
+
+## 6. Writing
+
+- [ ] Write a new draft for the 'Task Orbit' post
 
 ---
 
-## 3. JavaScript
+Notes / Next steps:
+- Prioritize CSS modularization and a minimal GH Actions workflow (build + publish).
+- After automation, add caching and CI smoke tests for faster, safer builds.
 
-### 3.1 Modularization
-- [ ] Move all JS from HTML templates to separate `.js` files:
-  - [ ] `carousel.js`
-  - [ ] `search.js`
-  - [ ] `utils.js`
-- [ ] Include JS via the Pelican theme templates
+## 7. Suggested Improvements (optional / future)
 
-### 3.2 Carousel
-- [ ] Extract carousel logic into `carousel.js`
-- [ ] Improve behavior:
-  - [ ] Smooth scrolling
-  - [ ] Disable arrow keys
-  - [ ] Optional: touch/drag support
+- [ ] Accessibility audit and fixes (WCAG basics, ARIA roles, keyboard nav)
+- [ ] Add sitemap.xml and robots.txt; enhance SEO meta and OpenGraph tags
+- [ ] Generate RSS/Atom feed and ensure feed links in templates
+- [ ] Automate image optimization (WebP, responsive srcset) and add lazy-loading
+- [ ] Add Lighthouse CI or GitHub Action to track performance, accessibility, best-practices
+- [ ] Add link/HTML checker in CI to catch broken links and invalid markup
+- [ ] Add a local preview Dockerfile or `docker-compose` for consistent dev environment
+- [ ] Add Markdown linting and spelling/grammar checks (markdownlint, Vale)
+- [ ] Add template tests (render small sample content and assert expected output) using pytest
+- [ ] Add PR and issue templates, CODE_OF_CONDUCT.md, and SECURITY.md
+- [ ] Add Dependabot or similar to keep dependencies up-to-date
+- [ ] Add an optional dark mode and theme toggle with CSS variables
+- [ ] Add contributor-friendly docs: README improvements, quick start, release notes
+- [ ] Consider internationalization (i18n) support for templates and content
+- [ ] Add analytics/privacy options (cookie consent + privacy-friendly analytics)
 
-### 3.3 Search Functionality
-- [ ] Implement live search for blog entries:
-  - [ ] Filter cards by title/text/metadata
-  - [ ] Case-insensitive matching
-  - [ ] Optional: highlight matches
-  - [ ] Use debounce for performance
-- [ ] Add `search.js` to theme `static/js` folder
+These are high-impact, incremental improvements—tell me which ones you want prioritized and I will implement the first one.
 
----
-
-## 4. Content / Media
-
-### 4.1 Images
-- [ ] Ensure `/images/blogs/{slug}/` folder structure
-- [ ] Reference images via front-matter in Markdown or reStructuredText
-- [ ] Optional: add thumbnails for index page cards
-
----
-
-## 5. Deployment
-
-### 5.1 GitHub Actions
-- [ ] Set up a workflow that:
-  - [ ] Builds the Pelican site
-  - [ ] Publishes the output to `gh-pages`
-  - [ ] Runs on push to `main`
-- [ ] Optional:
-  - [ ] Cache dependencies for faster builds
-  - [ ] Test build locally with `pelican content` before push
-
-
-
-
-- akut:
-
-    - contact page
-    - iamges in blog posts (header)
-
-
-todo:
-- cut off tags at ~10 and implement a show more
-- make the thumbnails clcikable
-- make the large proejct thumbnail look better
-
--> write another draft for task orbit
--> do the gh pages automation
-  -> on 
-
-
-pelican project:
-what needs to be done: modularize css. professionalize repo with pre-commit-hooks, add tests
