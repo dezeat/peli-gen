@@ -23,6 +23,9 @@
 - [x] Add social links to header/footer in theme templates
 - [x] Organize `content/images/` and add thumbnail support
 
+- [ ] Add sitemap.xml and robots.txt; enhance SEO meta and OpenGraph tags
+- [ ] Generate RSS/Atom feed and ensure feed links in templates
+
 ## 4. CI / Deployment
 
 ### 4.1 GitHub Actions
@@ -30,11 +33,16 @@
 - [ ] Add a publish workflow to deploy output to `gh-pages` on push to `main`
 - [ ] Add a smoke test step that runs `pelican content` to validate builds
 
+- [ ] Add Dependabot or similar to keep dependencies up-to-date
+
 ## 5. Repository Hygiene
 
 - [ ] Create `CONTRIBUTING.md` and a post template
 - [ ] Add pre-commit hooks and minimal tests
 - [ ] Review and clean up repository structure
+
+- [ ] Add PR and issue templates, CODE_OF_CONDUCT.md, and SECURITY.md
+- [ ] Add Markdown linting and spelling/grammar checks (markdownlint, Vale)
 
 ## 6. Writing
 
@@ -46,23 +54,5 @@ Notes / Next steps:
 - Prioritize CSS modularization and a minimal GH Actions workflow (build + publish).
 - After automation, add caching and CI smoke tests for faster, safer builds.
 
-## 7. Suggested Improvements (optional / future)
-
-- [ ] Accessibility audit and fixes (WCAG basics, ARIA roles, keyboard nav)
-- [ ] Add sitemap.xml and robots.txt; enhance SEO meta and OpenGraph tags
-- [ ] Generate RSS/Atom feed and ensure feed links in templates
-- [ ] Automate image optimization (WebP, responsive srcset) and add lazy-loading
-- [ ] Add Lighthouse CI or GitHub Action to track performance, accessibility, best-practices
-- [ ] Add link/HTML checker in CI to catch broken links and invalid markup
-- [ ] Add a local preview Dockerfile or `docker-compose` for consistent dev environment
-- [ ] Add Markdown linting and spelling/grammar checks (markdownlint, Vale)
-- [ ] Add template tests (render small sample content and assert expected output) using pytest
-- [ ] Add PR and issue templates, CODE_OF_CONDUCT.md, and SECURITY.md
-- [ ] Add Dependabot or similar to keep dependencies up-to-date
-- [ ] Add an optional dark mode and theme toggle with CSS variables
-- [ ] Add contributor-friendly docs: README improvements, quick start, release notes
-- [ ] Consider internationalization (i18n) support for templates and content
-- [ ] Add analytics/privacy options (cookie consent + privacy-friendly analytics)
-
-These are high-impact, incremental improvements—tell me which ones you want prioritized and I will implement the first one.
+These five items are added as low-hanging, high-impact improvements; the other suggested items were removed per your request.
 
