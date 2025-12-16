@@ -4,7 +4,7 @@ Type: project
 Tags: Python, Pelican, Web Development, CI/CD, Automation
 Category: Project
 Summary: Why I chose a static site generator over a CMS, and how I built a robust, low-maintenance publishing platform using pelican SSG.
-Thumbnail: images/blog/pelican_tb.png
+Thumbnail: images/blog/pelican_tbn.png
 Main: images/blog/pelican_main.png
 
 ## Project Overview

@@ -99,7 +99,6 @@ For automation, add a CI workflow that runs `poetry install` and `make build`, t
 ```
 Title: My New Post
 Date: 2025-12-16 10:00
-Author: David Zimmermann
 Tags: pelican, blog
 Image: images/blog/my-new-post/header.jpg
 Slug: my-new-post
@@ -135,7 +134,3 @@ See `todo.md` for the project's roadmap and outstanding tasks (CSS modularizatio
 ## License
 
 This project is licensed under the MIT License (see `LICENSE`).
-
----
-
-If you'd like, I can add a GitHub Actions workflow to automatically build and publish to your preferred host, or create a short `CONTRIBUTING.md` with post templates — tell me which you'd prefer next.

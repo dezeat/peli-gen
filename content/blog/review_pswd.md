@@ -4,7 +4,7 @@ Type: article
 Category: Book Reviews
 Tags: Software Design, Complexity, Clean Code, Book Review
 Summary: A review of the German edition of John Ousterhout's classic. I explore the concept of "deep modules" versus "clean code" and how managing complexity is the true goal of software design.
-Thumbnail: images/blog/book_review_tb.jpg
+Thumbnail: images/blog/book_review_tbn.png
 Main: images/blog/pswd_main.png
 
 

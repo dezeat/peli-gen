@@ -4,8 +4,8 @@ Type: article
 Category: Career
 Tags: Data Engineering, Career Path, Learning, Software Engineering
 Summary: A personal reflection on my journey into data engineering, from early tech curiosity to cloud-based data work.
-Thumbnail: images/blog/windy_road_tb.png
-Main: images/blog/windy_road_tb.png
+Thumbnail: images/blog/windy_road_tbn.png
+Main: images/blog/data_engineering_main.png
 
 I started this blog as a place to document what I'm learning and building — a personal knowledge base that helps me think, and occasionally something I can point others to.
 This post is a short overview of how I ended up in data engineering, even though I didn't follow the classic computer science route.
