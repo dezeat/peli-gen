@@ -4,7 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>{% if title %}{{ title }} - {% endif %}{{ SITENAME }}</title>
-  <link rel="stylesheet" href="{{ SITEURL }}/theme/main.css">
+  <!-- Modular CSS Architecture - Load in correct cascade order -->
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/tokens.css">
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/base.css">
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/layout.css">
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/components.css">
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pages/home.css">
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pages/projects.css">
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pages/blog.css">
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pages/about.css">
 </head>
 <body class="site-root">
   <header class="site-header">

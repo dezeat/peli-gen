@@ -10,10 +10,10 @@ SITEURL = ""
 DEFAULT_LANG = 'en'
 TIMEZONE = 'Europe/Paris'
 
-THEME = "themes/mytheme"
+THEME = "themes/mytheme"    
 
-# Index template vars
-SITE_DESCRIPTION = "A blog about development, programming, and technology"
+# Index template vars   
+SITE_DESCRIPTION = "A blog about development, programming, and data"
 COPYRIGHT_YEAR = datetime.now().year
 
 

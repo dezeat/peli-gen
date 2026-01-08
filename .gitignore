@@ -206,6 +206,14 @@ output/
 # Node / build artifacts
 node_modules/
 
+# Playwright artifacts
+playwright-report/
+test-results/
+playwright/.cache/
+
+# Keep package-lock.json for reproducibility (strict versioning)
+# Snapshots are committed to track visual baselines
+
 # Local envs
 .venv/
 venv/

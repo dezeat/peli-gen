@@ -1,0 +1,286 @@
+/* ============================================
+   Blog Page
+   Blog page-specific styles
+   ============================================ */
+
+/* ---------- Blog Page ---------- */
+.blog-page {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--space-2xl);
+  padding-block: var(--space-2xl);
+  align-items: start;
+}
+
+.feed {
+  min-width: 0;
+}
+
+.post-card {
+  display: flex;
+  flex-direction: row; 
+  gap: var(--space-lg);
+  margin-top: var(--space-md); 
+  margin-bottom: var(--space-md);
+  padding: var(--space-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.post-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent-soft);
+}
+
+.feed .post-card:first-child {
+  margin-top: 0;
+}
+
+.post-card .thumb {
+  width: 140px;
+  height: 95px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+  background: var(--bg);
+  border: 1px solid var(--border-light);
+}
+
+.post-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 var(--space-xs);
+}
+
+.meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+/* ---------- Article Page ---------- */
+.article-page-section {
+  padding-top: var(--space-2xl);
+  padding-bottom: var(--space-2xl);
+  max-width: 800px;
+}
+
+.article-header {
+  margin-bottom: var(--space-2xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border);
+}
+
+.article-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 var(--space-md);
+  line-height: 1.2;
+}
+
+.article-meta {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.article-meta a.category {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.article-content {
+  line-height: 1.75;
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+}
+
+.article-content h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.article-content h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+}
+
+.article-content a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--accent-light);
+  transition: var(--transition-base);
+}
+
+.article-content a:hover {
+  border-bottom-style: solid;
+}
+
+.article-content p,
+.article-content ul,
+.article-content ol {
+  margin-bottom: var(--space-lg);
+}
+
+.article-content ul,
+.article-content ol {
+  padding-left: 1.5rem;
+  margin-left: 0;
+}
+
+.article-content blockquote {
+  margin: var(--space-xl) 0;
+  padding: var(--space-md) var(--space-lg);
+  border-left: 4px solid var(--accent-light);
+  background: var(--bg-blue-tint);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+.article-content pre {
+  background: #1e293b;
+  color: #f8fafc;
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  font-size: 0.9rem;
+  margin-bottom: var(--space-lg);
+}
+
+.article-content code {
+  background: var(--bg-subtle);
+  color: var(--text);
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.article-content pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+}
+
+.article-footer {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--border);
+}
+
+/* ---------- Improved Article Tags (Bottom) ---------- */
+
+/* The container: uses flexbox to handle wrapping automatically */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem; /* Adds consistent space between the label and the tags */
+  margin-top: 0; 
+}
+
+/* The label "TAGS:" */
+.tag-list strong {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted); /* Makes it subtle so the tags stand out */
+  margin-right: 0.25rem;
+}
+
+/* The individual tag buttons */
+.tag-badge {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill); /* Uses your existing 100px radius variable */
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  
+  /* We remove the old margin-right because 'gap' in .tag-list handles spacing now */
+  margin-right: 0; 
+}
+
+/* Hover effect */
+.tag-badge:hover {
+  color: var(--accent);
+  border-color: var(--accent-light);
+  background-color: var(--accent-softer);
+  transform: translateY(-1px); /* A subtle lift effect */
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.1);
+}
+
+/* ---------- Article Cover Image ---------- */
+.article-cover {
+    margin: 0 0 var(--space-xl) 0; /* Space between image and text */
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-md);
+}
+
+.article-cover img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 550px; /* Prevents vertical images from taking up too much scroll space */
+    object-fit: cover; /* Ensures the image fills the area nicely */
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 800px) {
+  .blog-page {
+    grid-template-columns: 1fr;
+    padding-block: var(--space-xl);
+  }
+  
+  .feed {
+    padding-top: 0;
+  }
+  
+  .post-card {
+    flex-direction: column;
+  }
+  
+  .post-card .thumb {
+    width: 100%;
+    height: 160px;
+  }
+  
+  .article-page-section {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-xl);
+  }
+  
+  .article-title {
+    font-size: 2rem;
+  }
+  
+  .article-content {
+    font-size: 1rem;
+  }
+  
+  .article-cover img {
+    max-height: 350px;
+  }
+}
