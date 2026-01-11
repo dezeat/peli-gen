@@ -16,7 +16,7 @@ Eigentlich komme ich aus der Datenecke: Ich bin self-taught Data Engineer mit ru
 
 Meine Idee war: Ich wollte dieses "Enterprise"-Wissen festigen, indem ich es zuhause, spielerisch und ohne Druck nachbaue. Aber weil ich bei privaten Spaß-Projekten zu glänzenden, träumerischen Augen neige und dadurch den Scope zu sprengen, reichte mir das Backend nicht. Ich wollte zusätzlich "Basic Web-Dev" lernen.
 
-So entstand der Plan für "TaskOrbit": Eine Python Web-App mit Flask und HTMX. Flask, weil es weniger "heavy-weight" und "opinionated" als Django ist. HTMX, weil es versprach, dass man sich kaum mit Frontend-JavaScript herumschlagen muss. Das Rendering sollte über Jinja2 laufen – eine Templating-Engine, die ich schon kannte. Um das Ganze abzurunden, wollte ich einen DB-agnostischen Adapter bauen, der dank SQLAlchemy theoretisch alles von SQLite (lokal) bis Postgres/MariaDB (Deployment) bespielen kann.
+So entstand der Plan für "TaskOrbit": Eine Python Web-App mit Flask und HTMX. Flask, weil es weniger "heavy-weight" und "opinionated" als Django ist. HTMX, weil es versprach, dass man sich kaum mit Frontend-JavaScript herumschlagen muss. Das Rendering sollte über Jinja2 laufen, da ich die Templating-Engine schon kannte. Um das Ganze abzurunden, wollte ich einen DB-agnostischen Adapter bauen, der dank SQLAlchemy theoretisch alles von SQLite (lokal) bis Postgres/MariaDB (Deployment) bespielen kann.
 
 ### Der erste Entwurf
 
@@ -58,7 +58,7 @@ Beim Implementieren der Login-, Register- und Auth-Features habe ich neben der E
 
 Um das Ganze stabil zu machen, fügte ich eine Test-Suite hinzu: Unit-Tests für Auth/Hashing, Integrationstests für Task-Erstellung und ein Smoke-Test-Skript, das den App-Start und das Kompilieren (`python -m compileall`) prüft. Das alles läuft jetzt auch via Pre-Commit-Hooks (Ruff, Mypy) und einer GitHub Action.
 
-Final wurde die App containerisiert (Python-Slim Image + Gunicorn) inklusive `.dockerignore`, um die Files und Funktionalität, die für die Container-Runtime unnötig sind, auszuschließen und somit das resultierende Image minimal zu optimieren. Der Abschluss war das Deployment via Docker Compose in meinem Homelab – die eigene App auf dem Handy im lokalen Netzwerk zu sehen, war schon ein sehr nices Erlebnis und eine tolle Belohnung dafür, dass ich das Projekt in dem festgelegten Scope endlich fertiggestellt habe.
+Final wurde die App containerisiert (Python-Slim Image + Gunicorn) inklusive `.dockerignore`, um die Files und Funktionalität, die für die Container-Runtime unnötig sind, auszuschließen und somit das resultierende Image minimal zu optimieren. Der Abschluss war das Deployment via Docker Compose in meinem Homelab. Die eigene App auf dem Handy im lokalen Netzwerk zu sehen, war schon ein sehr nices Erlebnis und eine tolle Belohnung dafür, dass ich das Projekt in dem festgelegten Scope endlich fertiggestellt habe.
 
 ### Blick in die Zukunft: Was noch fehlt (und was vielleicht kommt)
 
@@ -87,8 +87,8 @@ Obwohl TaskOrbit "nur" eine Todo-Liste ist, war die Lernerfahrung relativ groß:
     * Code wegzuschmeißen (Serializer, CRUD-Module) fühlt sich im ersten Moment falsch an, führt aber fast immer zu besserem, wartbarerem Code.
 
 * **Agentic Workflow:**
-    * LLMs (wie Copilot) sind **"Super-Charged"** durch den direkten Zugriff auf den Repo-Kontext – besonders stark bei Tests und Boilerplate.
-    * Es erfordert aber zwingend eine **"Pair-Programming"-Mentalität**: Man muss strikte Specs vorgeben und Code Reviews durchführen. Kein blindes Copy-Paste!
+    * LLMs (wie Copilot) sind "Super-Charged" durch den direkten Zugriff auf den Repo-Kontext, besonders stark bei Tests und Boilerplate.
+    * Es erfordert aber zwingend eine "Pair-Programming"-Mentalität: Man muss strikte Specs vorgeben und Code Reviews durchführen. Kein blindes Copy-Paste!
     * Um wirklich autonome "Reddit-Level"-Ergebnisse zu erzielen, reicht Out-of-the-Box-Nutzung oft nicht; hier müsste man tiefer in spezialisiertes Tooling (SpecKit, Harness etc.) eintauchen.
 
 * **Security First:**
