@@ -1,5 +1,5 @@
 Title: How I build this Blog with Pelican
-Date: 2025-12-15 12:00
+Date: 2025-11-28 12:00
 Type: project
 Tags: Python, Pelican, Web Development, CI/CD, Automation
 Category: Project

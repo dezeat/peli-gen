@@ -227,3 +227,6 @@ themes/*/static/tailwind.css
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# specific dev files
+**/.pelican_devserver_pid

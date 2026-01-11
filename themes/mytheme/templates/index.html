@@ -62,7 +62,8 @@
                 <p class="muted">
                     {{ article.date.strftime('%a %d %b %Y') }} — {{ article.category }}
                 </p>
-                <p class="summary">{{ article.summary|truncate(100, True, '...') }}</p>
+                {# Added striptags here to fix layout issues #}
+                <p class="summary">{{ article.summary|striptags|truncate(100, True, '...') }}</p>
               </div>
             </article>
             
@@ -114,7 +115,8 @@
                 <p class="muted">
                     {{ a.date.strftime('%a %d %b %Y') }} — Projects
                 </p>
-                <p class="summary">{{ a.summary|truncate(100, True, '...') }}</p>
+                {# Added striptags here AND used 'a' variable correctly #}
+                <p class="summary">{{ a.summary|striptags|truncate(100, True, '...') }}</p>
               </div>
             </article>
         
@@ -132,7 +134,6 @@
 <section class="contact-section">
   <div class="container contact-inner">
     <h2>Let's Connect</h2>
-    <!-- Social icons removed as requested -->
     <p class="contact-description">
       I write about code and professional growth in tech. 
       I'm always open to discussing new opportunities, collaborations, or answering questions about my posts.
