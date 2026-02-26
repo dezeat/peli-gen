@@ -2,7 +2,7 @@ Title: How I build this Blog with Pelican
 Date: 2025-11-28 12:00
 Type: project
 Tags: Python, Pelican, Web Development, CI/CD, Automation
-Category: Project
+Category: Projects
 Summary: Why I chose a static site generator over a CMS, and how I built a robust, low-maintenance publishing platform using pelican SSG.
 Thumbnail: images/blog/pelican_tbn.png
 Main: images/blog/pelican_main.png

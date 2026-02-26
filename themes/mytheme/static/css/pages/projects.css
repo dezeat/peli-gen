@@ -29,6 +29,31 @@
   gap: var(--space-xl);
 }
 
+.project-grid-card {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-grid-link {
+  display: block;
+}
+
+.project-grid-placeholder {
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+}
+
+.project-grid-content {
+  flex-grow: 1;
+}
+
 /* ---------- Projects Featured Hero ---------- */
 .projects-featured-hero {
   margin-bottom: var(--space-2xl);

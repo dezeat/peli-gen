@@ -127,6 +127,10 @@
   padding-bottom: var(--space-sm);
 }
 
+.social-link-footer {
+  display: inline-flex;
+}
+
 .footer-social-icon {
   width: 28px;
   height: 28px;
@@ -136,6 +140,13 @@
 
 .footer-social-links a:hover .footer-social-icon {
   transform: translateY(-2px);
+}
+
+.footer-legal {
+  font-size: 0.85rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
 }
 
 /* ---------- Sidebar ---------- */

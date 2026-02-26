@@ -259,6 +259,10 @@
   overflow: hidden;
 }
 
+.card-link-block {
+  display: block;
+}
+
 /* ---------- Project Cards ---------- */
 
 /* The outer card container (the <a> tag) */
@@ -445,6 +449,10 @@
   background: var(--bg-subtle);
 }
 
+.search-clear-hidden {
+  display: none;
+}
+
 /* Search highlight */
 .search-highlight {
   background: var(--accent-soft);
@@ -521,6 +529,31 @@
 .no-results p {
   margin: 0;
   font-size: 1.1rem;
+}
+
+.no-results-hidden {
+  display: none;
+}
+
+.no-results .btn {
+  margin-top: var(--space-md);
+}
+
+.tag-count {
+  opacity: 0.6;
+  font-size: 0.8em;
+  margin-left: 4px;
+}
+
+.show-more-tags-hidden {
+  display: none;
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--accent);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 /* ---------- Responsive ---------- */

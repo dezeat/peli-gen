@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pages/about.css">
 </head>
 <body class="site-root">
+  {% from "_social_macros.html" import render_social_link %}
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
@@ -41,19 +42,11 @@
   <div class="container footer-inner">
     <div class="footer-social-links">
       {% for name, link in SOCIAL %}
-        {% if name == 'github' %}
-        <a href="{{ link }}" target="_blank" title="GitHub">
-          <img class="footer-social-icon" src="{{ SITEURL }}/images/social/icons8-github-30.png" alt="GitHub" width="20" height="20" />
-        </a>
-        {% elif name == 'linkedin' %}
-        <a href="{{ link }}" target="_blank" title="LinkedIn">
-          <img class="footer-social-icon" src="{{ SITEURL }}/images/social/icons8-linkedin-48.png" alt="LinkedIn" width="20" height="20" />
-        </a>
-        {% endif %}
+        {{ render_social_link(name, link, SITEURL, 'footer') }}
       {% endfor %}
     </div>
 
-    <div class="footer-legal" style="font-size: 0.85rem; margin-top: 1rem; margin-bottom: 0.5rem; opacity: 0.8;">
+    <div class="footer-legal">
        <a href="{{ SITEURL }}/pages/impressum.html">Legal Notice</a> &bull; <a href="{{ SITEURL }}/pages/privacy.html">Privacy Policy</a>
     </div>
 
