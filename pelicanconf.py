@@ -40,7 +40,6 @@ SOCIAL = (
 ARTICLE_PATHS = ['blog', 'projects']
 PAGE_PATHS = ['pages']
 STATIC_PATHS = ['images']
-PROJECT_PATHS = ['projects'] 
 
 # Only generate the direct templates we need (index, plus custom blog/projects pages)
 DIRECT_TEMPLATES = ['index', 'blog', 'projects']

@@ -1,0 +1,26 @@
+{% macro render_social_link(name, link, siteurl, variant='footer') -%}
+  {% set social_name = name|lower %}
+  {% if social_name == 'github' %}
+    {% set label = 'GitHub' %}
+    {% set footer_icon = 'images/social/icons8-github-30.png' %}
+    {% set about_icon = 'images/social/icons8-github-60.png' %}
+  {% elif social_name == 'linkedin' %}
+    {% set label = 'LinkedIn' %}
+    {% set footer_icon = 'images/social/icons8-linkedin-48.png' %}
+    {% set about_icon = 'images/social/icons8-linkedin-96.png' %}
+  {% else %}
+    {% set label = none %}
+  {% endif %}
+
+  {% if label %}
+    {% if variant == 'about' %}
+      <a href="{{ link }}" target="_blank" rel="noopener noreferrer" class="btn btn-ghost w-full social-link-about" title="{{ label }}">
+        <img src="{{ siteurl }}/{{ about_icon }}" alt="{{ label }}" width="20" height="20" class="social-icon-about">{{ label }}
+      </a>
+    {% else %}
+      <a href="{{ link }}" target="_blank" rel="noopener noreferrer" title="{{ label }}" class="social-link-footer">
+        <img class="footer-social-icon" src="{{ siteurl }}/{{ footer_icon }}" alt="{{ label }}" width="20" height="20" />
+      </a>
+    {% endif %}
+  {% endif %}
+{%- endmacro %}

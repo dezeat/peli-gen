@@ -70,7 +70,6 @@ make launch
 - `pelicanconf.py` — Pelican configuration used for building and serving
 - `pyproject.toml` — project metadata and dependencies
 - `Makefile` — convenience targets for build / serve / clean / launch
-- `todo.md` — project TODOs and roadmap items
 
 ## Configuration notes
 
@@ -129,7 +128,7 @@ Tips:
 
 ## Roadmap & contributions
 
-See `todo.md` for the project's roadmap and outstanding tasks (CSS modularization, JS modularization, deployment automation, etc.). Contributions are welcome — open a PR with changes and include a short description of what you changed and how to validate locally (e.g. `make build`).
+See `.agent/PLANNING.md` for local roadmap context (if available in your clone). Contributions are welcome — open a PR with changes and include a short description of what you changed and how to validate locally (e.g. `make check`).
 
 ## License
 

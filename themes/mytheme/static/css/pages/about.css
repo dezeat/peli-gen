@@ -72,6 +72,11 @@
   gap: 0.5rem;
 }
 
+.social-icon-about {
+  vertical-align: middle;
+  margin-right: 0.5em;
+}
+
 .about-actions .btn-full {
   background: var(--accent);
   color: var(--text-inverse);

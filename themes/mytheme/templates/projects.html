@@ -29,19 +29,19 @@
     {# 3. The Grid #}
     <div class="projects-grid">
         {% for project in projects[1:] %}
-            <article class="card" style="width: 100%; max-width: none; margin: 0; display: flex; flex-direction: column;">
+            <article class="card project-grid-card">
                 
                 {% if project.metadata.get('thumbnail') %}
-                <a href="{{ SITEURL }}{{ project.url }}" style="display: block;">
-                    <img src="{{ SITEURL }}/{{ project.metadata.get('thumbnail') }}" alt="{{ project.title }}" class="card-thumb" style="width: 100%; object-fit: cover;">
+                <a href="{{ SITEURL }}{{ project.url }}" class="project-grid-link">
+                    <img src="{{ SITEURL }}/{{ project.metadata.get('thumbnail') }}" alt="{{ project.title }}" class="card-thumb">
                 </a>
                 {% else %}
-                <a href="{{ SITEURL }}{{ project.url }}" style="display: block; background-color: #f0f0f0; height: 180px; display: flex; align-items: center; justify-content: center; color: #888;">
+                <a href="{{ SITEURL }}{{ project.url }}" class="project-grid-link project-grid-placeholder">
                    No Preview
                 </a>
                 {% endif %}
                 
-                <div class="card-content" style="flex-grow: 1;">
+                <div class="card-content project-grid-content">
                     <h3><a href="{{ SITEURL }}{{ project.url }}">{{ project.title }}</a></h3>
                     
                     {# --- THE FIX IS HERE --- #}

@@ -6,12 +6,13 @@ INPUT := $(PYDIR)/content
 OUTPUT := $(PYDIR)/output
 PELICAN_CONF := $(PYDIR)/pelicanconf.py
 
-.PHONY: help build serve stop clean tailwind launch visual-setup visual-test visual-update visual-report
+.PHONY: help build check serve stop clean tailwind launch visual-setup visual-test visual-update visual-report
 
 help:
 	@echo "Usage: make <target>"
 	@echo "  help            Show this help"
 	@echo "  build           Build static site (production)"
+	@echo "  check           Run build + metadata/template/link quality gates"
 	@echo "  serve           Run dev server with autoreload"
 	@echo "  stop            Stop dev server (if running in background)"
 	@echo "  clean           Remove generated output/"
@@ -28,6 +29,16 @@ launch:
 	$(MAKE) serve
 build:
 	poetry run pelican $(INPUT) -o $(OUTPUT) -s $(PELICAN_CONF)
+
+check: clean
+	$(MAKE) build
+	@test -f $(OUTPUT)/index.html || (echo "Missing index.html"; exit 1)
+	@test -f $(OUTPUT)/blog.html || (echo "Missing blog.html"; exit 1)
+	@test -f $(OUTPUT)/projects.html || (echo "Missing projects.html"; exit 1)
+	poetry run python scripts/ci/check_content_metadata.py
+	poetry run python scripts/ci/check_template_quality.py
+	poetry run python scripts/ci/check_internal_links.py $(OUTPUT)
+	@echo "✓ All quality gates passed"
 
 serve:
 	poetry run pelican --autoreload --listen $(INPUT) -o $(OUTPUT) -s $(PELICAN_CONF) > /dev/null 2>&1 & echo $$! > .pelican_devserver_pid; sleep 1; xdg-open http://127.0.0.1:8000 || true; echo "Dev server PID:`cat .pelican_devserver_pid`"

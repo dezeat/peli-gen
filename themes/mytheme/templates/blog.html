@@ -11,16 +11,16 @@
              {# We add |striptags to remove HTML and |replace('"', '') to remove quotes #}
              data-search="{{ article.title|striptags|lower|replace('"', '') }} {{ article.summary|striptags|lower|replace('"', '') }} {{ article.category|lower if article.category else '' }}">
              
-      <div style="display:flex; align-items:flex-start; gap:1rem; width:100%;">
+      <div class="post-card-inner">
         
         {# CHANGE 1: Clickable Image #}
         {% if article.metadata.get('thumbnail') %}
-        <a href="{{ SITEURL }}{{ article.url }}" style="flex-shrink: 0; display: block;">
+        <a href="{{ SITEURL }}{{ article.url }}" class="post-thumb-link">
           <img class="thumb" src="{{ SITEURL }}/{{ article.metadata.get('thumbnail') }}" alt="{{ article.title }}">
         </a>
         {% endif %}
 
-        <div style="flex:1; min-width:0;">
+        <div class="post-card-body">
           <header class="post-head">
             <h2 class="post-title"><a href="{{ SITEURL }}{{ article.url }}">{{ article.title }}</a></h2>
             
@@ -37,9 +37,9 @@
     </article>
     {% endfor %}
     
-    <div class="no-results" style="display: none;">
+    <div class="no-results no-results-hidden">
       <p>No posts found matching your criteria.</p>
-      <button class="btn btn-ghost" style="margin-top:1rem">Show all posts</button>
+      <button class="btn btn-ghost">Show all posts</button>
     </div>
   </div>
   
@@ -47,7 +47,7 @@
     <div class="sidebar-widget-group">
       <div class="search-box widget">
         <input type="text" id="search-input" placeholder="Search posts..." autocomplete="off" />
-        <button type="button" id="clear-search" class="search-clear" aria-label="Clear search" style="display: none;">
+        <button type="button" id="clear-search" class="search-clear search-clear-hidden" aria-label="Clear search">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -83,7 +83,7 @@
               <li class="tag-item" data-count="{{ articles|count }}" data-tag="{{ tag.name|lower }}">
                 <button type="button" class="cat-badge tag-filter" data-tag="{{ tag.name|lower }}">
                   {{ tag.name }} 
-                  <span style="opacity: 0.6; font-size: 0.8em; margin-left: 4px;">({{ articles|count }})</span>
+                  <span class="tag-count">({{ articles|count }})</span>
                 </button>
               </li>
             {% endfor %}
@@ -92,7 +92,7 @@
           {% endif %}
         </ul>
         
-        <button id="show-more-tags" class="btn-text" style="display:none; margin-top: 10px; font-size: 0.85rem; color: var(--accent); cursor: pointer; background: none; border: none; padding: 0;">
+        <button id="show-more-tags" class="btn-text show-more-tags-hidden">
             Show more...
         </button>
       </div>
@@ -102,4 +102,5 @@
 
 {# Link the modular JS files #}
 <script src="{{ SITEURL }}/theme/js/search.js"></script>
-<script src="{{ SITEURL }}/theme/js/tags.js"></script> {% endblock %}
+<script src="{{ SITEURL }}/theme/js/tags.js"></script>
+{% endblock %}
