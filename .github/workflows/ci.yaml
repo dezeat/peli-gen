@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build & Smoke Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Cache Poetry virtualenv
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pypoetry
+          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-poetry-
+
+      - name: Install dependencies
+        run: poetry install --no-interaction --no-root
+
+      - name: Build site
+        run: poetry run pelican content -o output -s pelicanconf.py
+
+      - name: Verify output
+        run: |
+          test -f output/index.html || { echo "Missing index.html"; exit 1; }
+          test -f output/blog.html  || { echo "Missing blog.html"; exit 1; }
+          test -f output/projects.html || { echo "Missing projects.html"; exit 1; }
+          echo "Smoke test passed — all expected pages generated."

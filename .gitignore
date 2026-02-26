@@ -230,3 +230,6 @@ __marimo__/
 
 # specific dev files
 **/.pelican_devserver_pid
+
+
+.agent/
