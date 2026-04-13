@@ -517,4 +517,4 @@ deploy = ["ghp-import"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13,<4.0"
-content-hash = "ed08e60272f1d612fd70609c30e3742b0881ff9528286c7c1d4120dfd0c22e8b"
+content-hash = "7d2bca896cecb00d1ac6a1b34ae5d3ab9de906c3d5c76f3086d4d52d1e9a9a29"
